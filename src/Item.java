@@ -6,5 +6,6 @@ public class Item extends MovingImage{
 		super(img, x, y, w, h);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 }
