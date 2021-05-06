@@ -1,3 +1,7 @@
+/**
+ * Class that is run to start the program
+ * @author 
+ */
 import javax.swing.*;
 import java.awt.*;
 
@@ -6,6 +10,10 @@ public class Main extends JFrame{
 	private JPanel cardPanel;
 	private DrawingSurface panel1;
 	
+	/**
+	 * Constructor for Main class
+	 * @param title name of the window
+	 */
 	public Main(String title) {
 		super(title);
 		setBounds(100, 100, 800, 600);
@@ -24,11 +32,18 @@ public class Main extends JFrame{
 	    setVisible(true);
 	}
 	
+	/**
+	 * Main method
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Main main = new Main("CovidRun");
 		System.out.println("This is our Capstone Project");
 	}
 
+	/**
+	 * Changes the panel shown
+	 */
 	public void changePanel() {
 		((CardLayout)cardPanel.getLayout()).next(cardPanel);
 		panel1.requestFocus();
