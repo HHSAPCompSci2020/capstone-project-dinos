@@ -20,7 +20,6 @@ public class MovingImage extends Rectangle2D.Double {
 		image = img;
 	}
 	
-	
 	// METHODS	
 	public void moveToLocation(double x, double y) {
 		super.x = x;
