@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"Covid"},{"p":"<Unnamed>","l":"DrawingSurface"},{"p":"<Unnamed>","l":"Item"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"Mask"},{"p":"<Unnamed>","l":"MovingImage"},{"p":"<Unnamed>","l":"Player"},{"p":"<Unnamed>","l":"Scoreboard"},{"p":"<Unnamed>","l":"Vaccine"}]
