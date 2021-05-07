@@ -1,3 +1,4 @@
+package movingObjects;
 /**
  * Represents the covid particles and is a subclass of Item
  * @author 

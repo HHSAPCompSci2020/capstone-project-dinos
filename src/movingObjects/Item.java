@@ -1,7 +1,4 @@
-/**
- * Represents the items in the game and is a subclass of MovingImage and a superclass of Mask, Covid, and Vaccine
- * @author 
- */
+package movingObjects;
 import processing.core.PImage;
 
 public class Item extends MovingImage{

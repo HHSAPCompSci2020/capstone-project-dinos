@@ -1,3 +1,4 @@
+package movingObjects;
 /**
  * Represents the masks and is a subclass of Item
  * @author 
