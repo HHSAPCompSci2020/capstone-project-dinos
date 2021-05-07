@@ -39,6 +39,7 @@ public class Main extends JFrame{
 	public static void main(String[] args) {
 		Main main = new Main("CovidRun");
 		System.out.println("This is our Capstone Project");
+		System.out.println("Made by:Isaac Phoon, Clarence Choy, Yukai Qiu");
 	}
 
 	/**
