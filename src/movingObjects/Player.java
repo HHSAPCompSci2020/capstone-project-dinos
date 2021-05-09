@@ -1,8 +1,8 @@
-package movingObjects;
 /**
  * Represents the user controlled character and is a subclass of MovingImage
  * @author 
  */
+package movingObjects;
 
 import java.awt.Rectangle;
 import java.awt.Shape;

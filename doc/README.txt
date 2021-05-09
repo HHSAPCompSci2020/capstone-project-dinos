@@ -1,6 +1,6 @@
 Covid Run (Dinosaur Run)
 Authors: Clarence Choy, Yukai Qiu, Isaac Phoon
-Revision: 5/3/2021
+Revision: 5/8/2021
 
 Introduction: 
 [In a few paragraphs totaling about ½ page, introduce the high-level concept of your program. What this looks like depends a lot on what type of thing you are making. An introduction for an application will look different than one for a game. In general, your introduction should address questions like these:
@@ -11,9 +11,9 @@ What are the rules? What is the goal?
 Who would want to use your program?
 What are the primary features of your program?]
 
-It is the year 2021 and a year before the deadly virus Covid-19 has taken the world by surprise. Infection rates have skyrocketed globally and without an end in sight, it seemed hopeless. Miraculously, just earlier this year a vaccine for the virus was created and is gradually being released to the public. However, not all of the elderly are able to travel to a place to be vaccinated so you must gather masks and vaccines to deliver them. 
+It is the year 2021 and a deadly virus named Covid-19 has taken the world by surprise. In just a few weeks, the virus has spread all over the world and there seems to be no sign of it stopping. Infection rates have skyrocketed globally and without a vaccine in sight, it seemed hopeless. Miraculously, you and your group of doctors have announced that a vaccine for the virus has been created and is gradually being released to the public. However, not everyone is able to travel to a vaccination center (especially the elderly) so you must gather masks and vaccines so you can then deliver them to people in need.
 
-In this java-based game, the user controls a character that can jump and duck. Your character runs while different items such as masks, vaccines, and Covid-19 particles spawn in. The goal of the game is to survive while avoiding the Covid-19 particles and collecting masks and vaccines to gain a higher score. To add to the difficulty, the speed that the character runs increases making it harder to avoid obstacles. We decided to write this game because it is relevant to our current situation and is also a fun game for students to play. The rules of the are simple:
+In this java-based game, the user controls a doctor that can perform two actions, jumping and ducking. Your character runs while different items such as masks, vaccines, and Covid-19 particles spawn in. The goal of the game is to survive while avoiding the Covid-19 particles and collecting masks and vaccines to gain a higher score. To add to the difficulty, the speed that the character runs increases making it harder to avoid obstacles. We decided to write this game because it is relevant to our current situation and is also a fun game for students to play. The rules of the are simple:
 
 Avoid Covid-19 particles so you don’t get infected
 Pick up masks and other items to boost your score
@@ -36,12 +36,14 @@ Must-have Features:
 
 A user controlled character
 Jumps when the up arrow key is pressed and ducks when the down arrow key is pressed. The character can stand on platforms and has some physics applied to it to make the jumping look somewhat real
+The character will not actually move, the background and obstacles will move to make it appear that the character is running
 Character-Mask interaction
 Masks will randomly spawn in the window from the right side of the screen at set heights above the ground. When the character touches the mask, the user’s score will increase and the mask will disappear
 Character-Covid interaction
 Covid particles will also spawn in from the right side of the screen at set heights above the ground. If the character touches the Covid, the player will “die” and the game over screen will appear
 Scoreboard in the top left corner
 A small box in the top left of the window that displays a number which will be your score. Your score can increase from collecting masks and also from surviving for longer.
+The score will originally increase at a rate of 10 points a second but the rate at which points are earned will increase. We have not yet determined this rate
 A vaccine item with character interaction
 Vaccines will randomly spawn and if the user touches it they will be immune to the Covid particles for 5 seconds. Indication of immunity will be shown by a change in color of the character
 
@@ -53,7 +55,7 @@ There are buildings in the background to resemble a city-like environment where 
 Animations 
 Use gifs as running animations for the character and a dying animation for when the character runs into a Covid particle
 The ability to change the skin or outfit of the player
-Before the game starts, there will be a customize button that you can click on to change what your character looks like. Once the user selects their desired character they can go back and start the game
+Before the game starts, there will be a customize button that you can click on to change what your character looks like. This button will go to a new window with different outfits that the user can wear. Once the user selects their desired character they can go back and start the game
 More complex terrains
 Add platforms instead of just one flat ground that the user can run on. The character can jump onto these platforms and items can also spawn at these heights
 A game over screen
@@ -90,10 +92,11 @@ Credits:
 [Gives credit for project components. This includes both internal credit (your group members) and external credit (other people, websites, libraries). To do this:
 List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
 Give credit to all outside resources used. This includes downloaded images or sounds, external java libraries, parent/tutor/student coding help, etc.]
+
 Everyone - UML, README
-Clarence - Item, Mask, Covid
-Isaac - Player
-Yukai - Scoreboard, Vaccine
+Clarence - Player, Item
+Isaac - Mask, Vaccine
+Yukai - Scoreboard
 All work on Main and DrawingSurface
 
 MovingImage class - Mr. Shelby

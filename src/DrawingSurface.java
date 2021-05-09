@@ -7,7 +7,7 @@ import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import movingObjects.Player;
+import movingObjects.*;
 import processing.core.PApplet;
 
 public class DrawingSurface extends PApplet{
@@ -16,9 +16,11 @@ public class DrawingSurface extends PApplet{
 	public static final int DRAWING_HEIGHT = 600;
 	
 	private Player player;
+	private Scoreboard sb;
 	
 	private ArrayList<Integer> keys;
 	private ArrayList<Shape> platforms;
+	private ArrayList<Item> items;
 	
 	/**
 	 * Constructor for DrawingSurface class
@@ -27,7 +29,13 @@ public class DrawingSurface extends PApplet{
 		keys = new ArrayList<Integer>();
 		platforms = new ArrayList<Shape>();
 		platforms.add(new Rectangle(0, 400, 800, 200));
+		items = new ArrayList<Item>();
+		sb = new Scoreboard();
+		
+		items.add(new Mask(loadImage("media/mask.png"), 500, 300, Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
 		player = new Player(loadImage("media/doctor.png"), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
+		
+		
 		
 	}
 	
@@ -55,7 +63,18 @@ public class DrawingSurface extends PApplet{
 			}
 		}
 		
+		// OBJECT OUTLINES
+		fill(255);
+		rect((float)items.get(0).x, (float)items.get(0).y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
+		rect((float)player.x, (float)player.y, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
+		
 		player.draw(this);
+		for(Item i : items)
+			i.draw(this);
+		
+		textSize(24);
+		fill(0, 0, 0);
+		text(sb.getScore(), 750, 30);
 		
 		popMatrix();
 		
@@ -64,7 +83,34 @@ public class DrawingSurface extends PApplet{
 		}
 		
 		player.act(platforms);
+		for(Item i : items) {
+			i.act();
+		}
+		
+		for(Item i : items) {
+			if(i.intersects(player)) {
+				
+				if(i instanceof Mask) {
+					
+					sb.add(sb.MASK);
+					i.spawnNewItem();
+					
+				}
+				
+				if(i instanceof Vaccine) {
+					
+				}
+			}
 			
+			if(i.x+i.width < 0) {
+				
+				if(i instanceof Mask) {
+					
+					i.spawnNewItem();
+					
+				}
+			}
+		}
 	}
 	
 	/**

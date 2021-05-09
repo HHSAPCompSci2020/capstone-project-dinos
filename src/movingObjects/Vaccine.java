@@ -1,8 +1,9 @@
-package movingObjects;
 /**
  * Represents the vaccines and is a subclass of Item
  * @author 
  */
+package movingObjects;
+
 import processing.core.PImage;
 
 public class Vaccine extends Item{

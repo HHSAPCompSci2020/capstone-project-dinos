@@ -1,8 +1,9 @@
-package movingObjects;
 /**
  * Represents the covid particles and is a subclass of Item
  * @author 
  */
+package movingObjects;
+
 import processing.core.PImage;
 
 public class Covid extends Item{

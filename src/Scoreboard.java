@@ -1,20 +1,21 @@
 /**
  * Represents the scoreboard
- * 
  * @author
  */
 
 public class Scoreboard {
 
+	public static final int MASK = 20;
+	
 	private int score;
-	private int multiplyer;
+	private int multiplier;
 
 	/**
 	 * Constructor for Scoreboard class
 	 */
 	public Scoreboard() {
 		score = 0;
-		multiplyer = 0;
+		multiplier = 0;
 	}
 
 	/**
@@ -35,5 +36,11 @@ public class Scoreboard {
 //
 //		}
 
+		score += amount;
+		
+	}
+	
+	public int getScore() {
+		return score;
 	}
 }

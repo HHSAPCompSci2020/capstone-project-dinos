@@ -1,12 +1,16 @@
-package movingObjects;
 /**
  * Represents the masks and is a subclass of Item
  * @author 
  */
+package movingObjects;
+
 import processing.core.PImage;
 
 public class Mask extends Item{
 
+	public static final int MASK_WIDTH = 80;
+	public static final int MASK_HEIGHT = 80;
+	
 	/**
 	 * Constructor for Mask class
 	 * @param img image file for what Mask looks like
