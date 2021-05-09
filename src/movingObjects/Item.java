@@ -25,7 +25,7 @@ public class Item extends MovingImage{
 	public Item(PImage img, int x, int y, int w, int h) {
 		super(img, x, y, w, h);
 		speed = -7;
-		yValues = new ArrayList<Integer>(Arrays.asList(150, 200));
+		yValues = new ArrayList<Integer>(Arrays.asList(150, 300));
 		
 	}
 	
