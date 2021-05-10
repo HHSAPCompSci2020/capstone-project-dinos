@@ -17,7 +17,7 @@ public class DrawingSurface extends PApplet{
 	
 	private Player player;
 	private Scoreboard sb;
-	
+
 	private ArrayList<Integer> keys;
 	private ArrayList<Shape> platforms;
 	private ArrayList<Item> items;
@@ -75,6 +75,7 @@ public class DrawingSurface extends PApplet{
 		textSize(24);
 		fill(0, 0, 0);
 		text(sb.getScore(), 750, 30);
+		
 		
 		popMatrix();
 		
