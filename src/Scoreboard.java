@@ -8,14 +8,18 @@ public class Scoreboard {
 	public static final int MASK = 20;
 	
 	private int score;
-	private int multiplier;
+	private int count;
+	private int onePoint;
+	//private double multiplier;
 
 	/**
 	 * Constructor for Scoreboard class
 	 */
 	public Scoreboard() {
 		score = 0;
-		multiplier = 0;
+		count = 0;
+		onePoint = 10;
+		//multiplier = 0;
 	}
 
 	/**
@@ -40,7 +44,18 @@ public class Scoreboard {
 		
 	}
 	
+	public void act() {
+		
+		if(count%onePoint == 0) {
+			score++;
+		}
+		
+		count++;
+	}
+	
 	public int getScore() {
+		
 		return score;
+		
 	}
 }

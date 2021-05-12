@@ -112,6 +112,8 @@ public class DrawingSurface extends PApplet{
 				}
 			}
 		}
+		
+		sb.act();
 	}
 	
 	/**
