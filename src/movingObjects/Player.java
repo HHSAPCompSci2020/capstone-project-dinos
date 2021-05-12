@@ -20,6 +20,7 @@ public class Player extends MovingImage{
 	private boolean onASurface;
 	private double gravity;
 	private double jumpStrength;
+	private int state; // 0 = Dead	1 = Alive	2 = Invincible
 	
 	/**
 	 * Constructor for Player class
@@ -35,6 +36,7 @@ public class Player extends MovingImage{
 		onASurface = false;
 		gravity = 0.7;
 		jumpStrength = 15;
+		state = 1;
 	}
 	
 	/**
@@ -95,6 +97,16 @@ public class Player extends MovingImage{
 			yVelocity = 0;
 		
 		moveToLocation(xCoord, yCoord2);
+	}
+	
+	public void setState(int invincible) {
+		this.state = state;
+		
+	}
+	
+	public int getState() {
+		return state;
+		
 	}
 
 }

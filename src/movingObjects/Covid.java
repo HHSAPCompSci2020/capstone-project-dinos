@@ -7,6 +7,9 @@ package movingObjects;
 import processing.core.PImage;
 
 public class Covid extends Item{
+	
+	public static final int COVID_WIDTH = 80;
+	public static final int COVID_HEIGHT = 80;
 
 	/**
 	 * Constructor for Covid class

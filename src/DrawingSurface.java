@@ -1,6 +1,6 @@
 /**
  * DrawingSurface class where all of the objects are instantiated and methods are called
- * @author 
+ * @author Clarence Choy
  */
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -32,10 +32,8 @@ public class DrawingSurface extends PApplet{
 		items = new ArrayList<Item>();
 		sb = new Scoreboard();
 		
-		items.add(new Mask(loadImage("media/mask.png"), 500, 300, Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
+		addItems(items);
 		player = new Player(loadImage("media/doctor.png"), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
-		
-		
 		
 	}
 	
@@ -65,8 +63,11 @@ public class DrawingSurface extends PApplet{
 		
 		// OBJECT OUTLINES
 		fill(255);
-		rect((float)items.get(0).x, (float)items.get(0).y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
+		for(Item i : items) {
+			rect((float)i.x, (float)i.y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
+		}
 		rect((float)player.x, (float)player.y, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
+		
 		
 		player.draw(this);
 		for(Item i : items)
@@ -92,13 +93,16 @@ public class DrawingSurface extends PApplet{
 			if(i.intersects(player)) {
 				
 				if(i instanceof Mask) {
-					
 					sb.add(sb.MASK);
-					i.spawnNewItem();
+					i.spawnNewItem(1000);
 					
-				}
-				
-				if(i instanceof Vaccine) {
+				} else if(i instanceof Vaccine) {
+					player.setState(2);
+					i.spawnNewItem(5000, 10000);
+					
+				} else if(i instanceof Covid) {
+					player.setState(0);
+					System.out.println("Player is dead x_x");
 					
 				}
 			}
@@ -106,14 +110,27 @@ public class DrawingSurface extends PApplet{
 			if(i.x+i.width < 0) {
 				
 				if(i instanceof Mask) {
+					i.spawnNewItem(1000);
+				} else if(i instanceof Vaccine) {
 					
-					i.spawnNewItem();
-					
+				} else if(i instanceof Covid) {
+					i.spawnNewItem(Item.getRandomX(1000, 1500));
 				}
 			}
 		}
 		
+		
+		
 		sb.act();
+	}
+	
+	public void addItems(ArrayList<Item> i) {
+		
+		i.add(new Mask(loadImage("media/mask.png"), 2000, Item.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
+		i.add(new Mask(loadImage("media/mask.png"), 2500, Item.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
+		i.add(new Covid(loadImage("media/covid.png"), Item.getRandomX(1500, 2500), 300, Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
+		
+		
 	}
 	
 	/**
