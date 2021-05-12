@@ -12,8 +12,8 @@ import processing.core.PImage;
 public class Item extends MovingImage{
 	
 	private double speed;
-	private ArrayList<Integer> yValues;
-
+	private static ArrayList<Integer> yValues = new ArrayList<Integer>(Arrays.asList(150, 300));
+	
 	/**
 	 * Constructor for Item Class
 	 * @param img image file for what Item looks like
@@ -25,18 +25,50 @@ public class Item extends MovingImage{
 	public Item(PImage img, int x, int y, int w, int h) {
 		super(img, x, y, w, h);
 		speed = -7;
-		yValues = new ArrayList<Integer>(Arrays.asList(150, 300));
 		
 	}
 	
+//	public Item(int minX, int maxX, int w, int h, PImage img) {
+//		super(img, getRandomX(minX, maxX), getRandomY(), w, h);
+//		speed = -7;
+//		
+//	}
+//	
+//	public Item(PImage img, int x, int w, int h) {
+//		super(img, x, getRandomY(), w, h);
+//		speed = -7;
+//	}
+	
 	public void act() {
+		
 		double xCoord = x+speed;
 		moveToLocation(xCoord, y);
+		
 	}
 	
-	public void spawnNewItem() {
+	public void spawnNewItem(int x) {
+		
+		moveToLocation(x, getRandomY());
+		
+	}
+	
+	public void spawnNewItem(int minX, int maxX) {
+		
+		moveToLocation(getRandomX(minX, maxX), getRandomY());
+		
+	}
+	
+	public static int getRandomY() {
+		
 		int n = (int) (Math.random() * yValues.size());
-		moveToLocation(1000, yValues.get(n));
+		return yValues.get(n);
+		
+	}
+	
+	public static int getRandomX(int minX, int maxX) {
+		
+		int n = (int) (Math.random() * (maxX-minX));
+		return minX + n;
 		
 	}
 	

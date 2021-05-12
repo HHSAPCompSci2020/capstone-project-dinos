@@ -1,6 +1,6 @@
 /**
  * Represents the scoreboard
- * @author
+ * @author Yukai Qiu
  */
 
 public class Scoreboard {

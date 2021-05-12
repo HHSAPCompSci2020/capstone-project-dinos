@@ -8,6 +8,9 @@ import processing.core.PImage;
 
 public class Vaccine extends Item{
 
+	public static final int VACCINE_WIDTH = 80;
+	public static final int VACCINE_HEIGHT = 80;
+	
 	/**
 	 * Constructor for Vaccine class
 	 * @param img image file for what Vaccine looks like
