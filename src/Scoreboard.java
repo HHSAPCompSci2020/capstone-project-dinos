@@ -48,7 +48,7 @@ public class Scoreboard {
 	public void act() {
 
 		if (count % onePoint == 0) {
-			score+=Math.pow(1.0005,score);
+			score=(int)Math.pow(score,1.0005);
 		}
 
 		count++;
