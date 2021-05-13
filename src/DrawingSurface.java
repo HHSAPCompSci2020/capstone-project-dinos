@@ -75,7 +75,7 @@ public class DrawingSurface extends PApplet{
 		
 		textSize(24);
 		fill(0, 0, 0);
-		text(sb.getScore(), 750, 30);
+		text(sb.getScore(), 650, 30);
 		
 		
 		popMatrix();
