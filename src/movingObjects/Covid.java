@@ -7,7 +7,10 @@ package movingObjects;
 import processing.core.PImage;
 
 public class Covid extends Item{
-	
+	/**
+	 * the width of covid item, COVID_WIDTH is 80
+	 * the height of covid item, COVID_HEIGHT is 80
+	 */
 	public static final int COVID_WIDTH = 80;
 	public static final int COVID_HEIGHT = 80;
 
