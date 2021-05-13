@@ -22,6 +22,8 @@ public class DrawingSurface extends PApplet{
 	private ArrayList<Shape> platforms;
 	private ArrayList<Item> items;
 	
+	private int count;
+	
 	/**
 	 * Constructor for DrawingSurface class
 	 */
@@ -34,7 +36,7 @@ public class DrawingSurface extends PApplet{
 		
 		addItems(items);
 		player = new Player(loadImage("media/doctor.png"), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
-		
+		count = 0;
 	}
 	
 	/**
@@ -53,6 +55,8 @@ public class DrawingSurface extends PApplet{
 
 		scale(ratioX, ratioY);
 		
+		
+		// DRAWING PLATFORM
 		fill(100);
 		for (Shape s : platforms) {
 			if (s instanceof Rectangle) {
@@ -69,26 +73,31 @@ public class DrawingSurface extends PApplet{
 		rect((float)player.x, (float)player.y, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
 		
 		
+		// DRAWING OBJECTS
 		player.draw(this);
 		for(Item i : items)
 			i.draw(this);
 		
+		
+		// DISPLAYING SCORE
 		textSize(24);
 		fill(0, 0, 0);
 		text(sb.getScore(), 650, 30);
 		
-		
 		popMatrix();
 		
+		// PLAYER & ITEM MOVEMENT
 		if (isPressed(KeyEvent.VK_UP)) {
 			player.jump();
 		}
 		
 		player.act(platforms);
 		for(Item i : items) {
-			i.act();
+			i.act(count);
 		}
 		
+		
+		// COLLISION DETECTION
 		for(Item i : items) {
 			if(i.intersects(player)) {
 				
@@ -120,8 +129,9 @@ public class DrawingSurface extends PApplet{
 		}
 		
 		
+		sb.act(count);
 		
-		sb.act();
+		count++;
 	}
 	
 	public void addItems(ArrayList<Item> i) {

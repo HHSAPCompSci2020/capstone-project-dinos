@@ -12,6 +12,8 @@ import processing.core.PImage;
 public class Item extends MovingImage{
 	
 	private double speed;
+	private double multiplier;
+	
 	private static ArrayList<Integer> yValues = new ArrayList<Integer>(Arrays.asList(150, 300));
 	
 	/**
@@ -25,6 +27,7 @@ public class Item extends MovingImage{
 	public Item(PImage img, int x, int y, int w, int h) {
 		super(img, x, y, w, h);
 		speed = -7;
+		multiplier = 0;
 		
 	}
 	
@@ -39,10 +42,18 @@ public class Item extends MovingImage{
 //		speed = -7;
 //	}
 	
-	public void act() {
+	public void act(int count) {
 		
 		double xCoord = x+speed;
 		moveToLocation(xCoord, y);
+		
+		
+		if (count % 10 == 0) {
+			multiplier += 0.00001;
+			speed -= multiplier;
+					
+		} 
+		
 		
 	}
 	

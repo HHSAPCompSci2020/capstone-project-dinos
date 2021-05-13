@@ -9,18 +9,14 @@ public class Scoreboard {
 	public static final int MASK = 20;
 
 	private int score;
-	private int count;
-	private int onePoint;
-	// private double multiplier;
+	private int multiplier;
 
 	/**
 	 * Constructor for Scoreboard class
 	 */
 	public Scoreboard() {
 		score = 0;
-		count = 0;
-		onePoint = 10;
-		// multiplier = 0;
+		multiplier = 1;
 	}
 
 	/**
@@ -45,10 +41,13 @@ public class Scoreboard {
 
 	}
 
-	public void act() {
+	public void act(int count) {
 
-		
-		
+		if (count % 10 == 0) {
+			multiplier += 0.2;
+			score += multiplier;
+					
+		} 
 	
 		
 	}

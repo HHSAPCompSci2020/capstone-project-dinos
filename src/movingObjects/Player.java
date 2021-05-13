@@ -34,8 +34,8 @@ public class Player extends MovingImage{
 		super(img, x, y, w, h);
 		yVelocity = 0;
 		onASurface = false;
-		gravity = 0.7;
-		jumpStrength = 15;
+		gravity = 0.9;
+		jumpStrength = 18;
 		state = 1;
 	}
 	
