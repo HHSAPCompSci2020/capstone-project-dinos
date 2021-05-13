@@ -1,6 +1,6 @@
 /**
  * Represents the user controlled character and is a subclass of MovingImage
- * @author 
+ * @author Clarence Choy
  */
 package movingObjects;
 
@@ -13,6 +13,10 @@ import processing.core.PImage;
 
 public class Player extends MovingImage{
 
+	/**
+	 * PLAYER_WIDTH is the width of the player on the screen
+	 * PLAYER_HEIGHT is the height of the player on the screen
+	 */
 	public static final int PLAYER_WIDTH = 70;
 	public static final int PLAYER_HEIGHT = 100;
 	
@@ -99,11 +103,19 @@ public class Player extends MovingImage{
 		moveToLocation(xCoord, yCoord2);
 	}
 	
-	public void setState(int invincible) {
+	/**
+	 * Sets the state of the player
+	 * @param state state you want the player to be set to 
+	 */
+	public void setState(int state) {
 		this.state = state;
 		
 	}
 	
+	/**
+	 * Gets the state of the player
+	 * @return state of the player
+	 */
 	public int getState() {
 		return state;
 		

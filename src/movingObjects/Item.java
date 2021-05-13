@@ -1,6 +1,6 @@
 /**
  * Represents an item in the game. Superclass of Mask, Vaccine, and Covid and a subclass of MovingImage
- * @author 
+ * @author Clarence Choy
  */
 package movingObjects;
 
@@ -31,17 +31,10 @@ public class Item extends MovingImage{
 		
 	}
 	
-//	public Item(int minX, int maxX, int w, int h, PImage img) {
-//		super(img, getRandomX(minX, maxX), getRandomY(), w, h);
-//		speed = -7;
-//		
-//	}
-//	
-//	public Item(PImage img, int x, int w, int h) {
-//		super(img, x, getRandomY(), w, h);
-//		speed = -7;
-//	}
-	
+	/**
+	 * Moves the item and increase the speed
+	 * @param count variable that keeps track of how many times draw method is called, similar to a time variable
+	 */
 	public void act(int count) {
 		
 		double xCoord = x+speed;
@@ -57,18 +50,31 @@ public class Item extends MovingImage{
 		
 	}
 	
+	/**
+	 * Spawns a new item at a certain x location and a random y
+	 * @param x x coordinate of the new location
+	 */
 	public void spawnNewItem(int x) {
 		
 		moveToLocation(x, getRandomY());
 		
 	}
 	
+	/**
+	 * Spawns a new item at a random x and a random y
+	 * @param minX minimum x value the item can spawn at
+	 * @param maxX maximum x value the item can spawn at
+	 */
 	public void spawnNewItem(int minX, int maxX) {
 		
 		moveToLocation(getRandomX(minX, maxX), getRandomY());
 		
 	}
 	
+	/**
+	 * Chooses a random y value from an array list of set y values
+	 * @return random y coordinate value
+	 */
 	public static int getRandomY() {
 		
 		int n = (int) (Math.random() * yValues.size());
@@ -76,9 +82,15 @@ public class Item extends MovingImage{
 		
 	}
 	
+	/**
+	 * Chooses a random x value from a minimum and maximum
+	 * @param minX minimum x value
+	 * @param maxX maximum x value
+	 * @return random integer between the minimum and the maximum inclusive
+	 */
 	public static int getRandomX(int minX, int maxX) {
 		
-		int n = (int) (Math.random() * (maxX-minX));
+		int n = (int) (Math.random() * (maxX-minX+1));
 		return minX + n;
 		
 	}

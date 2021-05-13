@@ -8,6 +8,10 @@ import processing.core.PImage;
 
 public class Vaccine extends Item{
 
+	/**
+	 * VACCINE_WIDTH is the width of the vaccine on the screen
+	 * VACCINE_HEIGHT is the height of the vaccine on the screen
+	 */
 	public static final int VACCINE_WIDTH = 80;
 	public static final int VACCINE_HEIGHT = 80;
 	

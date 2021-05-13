@@ -12,6 +12,10 @@ import processing.core.PApplet;
 
 public class DrawingSurface extends PApplet{
 	
+	/**
+	 * DRAWING_WIDTH is the width of the drawing window
+	 * DRAWING_HEIGHT is the height of the drawing window
+	 */
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
 	
@@ -102,7 +106,7 @@ public class DrawingSurface extends PApplet{
 			if(i.intersects(player)) {
 				
 				if(i instanceof Mask) {
-					sb.add(sb.MASK);
+					sb.add(sb.MASK_WORTH);
 					i.spawnNewItem(1000);
 					
 				} else if(i instanceof Vaccine) {
@@ -134,6 +138,10 @@ public class DrawingSurface extends PApplet{
 		count++;
 	}
 	
+	/**
+	 * Adds the many items to the game in the start
+	 * @param i ArrayList of Items that the new items are added to
+	 */
 	public void addItems(ArrayList<Item> i) {
 		
 		i.add(new Mask(loadImage("media/mask.png"), 2000, Item.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));

@@ -1,12 +1,14 @@
 /**
  * Represents the scoreboard
- * 
  * @author Yukai Qiu
  */
 
 public class Scoreboard {
 
-	public static final int MASK = 20;
+	/**
+	 * MASK_WORTH is the point value of a mask
+	 */
+	public final int MASK_WORTH = 20;
 
 	private int score;
 	private int multiplier;
@@ -21,7 +23,6 @@ public class Scoreboard {
 
 	/**
 	 * Increases/decreases the score by a certain amount
-	 * 
 	 * @param amount number of points the score increases/decreases by
 	 */
 	public void add(int amount) {
@@ -41,6 +42,10 @@ public class Scoreboard {
 
 	}
 
+	/**
+	 * Increases the score by a gradually increasing
+	 * @param count variable that keeps track of how many times draw method is called, similar to a time variable
+	 */
 	public void act(int count) {
 
 		if (count % 10 == 0) {
@@ -52,6 +57,10 @@ public class Scoreboard {
 		
 	}
 
+	/**
+	 * Gets the score in a string format
+	 * @return score as a string
+	 */
 	public String getScore() {
 		String dscore = String.valueOf(score);
 		String display = "";
