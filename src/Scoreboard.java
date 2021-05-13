@@ -48,10 +48,12 @@ public class Scoreboard {
 	public void act() {
 
 		if (count % onePoint == 0) {
-			score++;
+			score+=Math.pow(1.0005,score);
 		}
 
 		count++;
+		
+		
 	}
 
 	public String getScore() {
