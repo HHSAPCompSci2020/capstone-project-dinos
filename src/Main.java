@@ -34,7 +34,7 @@ public class Main extends JFrame{
 	
 	/**
 	 * Main method
-	 * @param args
+	 * @param args String array passed to main method
 	 */
 	public static void main(String[] args) {
 		Main main = new Main("CovidRun");
