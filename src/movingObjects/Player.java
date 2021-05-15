@@ -40,7 +40,7 @@ public class Player extends MovingImage{
 		yVelocity = 0;
 		onASurface = false;
 		gravity = 0.9;
-		jumpStrength = 18;
+		jumpStrength = 20;
 		state = 1;
 	}
 	
@@ -50,6 +50,15 @@ public class Player extends MovingImage{
 	public void jump() {
 		if (onASurface)
 			yVelocity -= jumpStrength;
+	}
+	
+	/**
+	 * Makes the Player duck
+	 */
+	public void duck() {
+		if(!onASurface)
+			yVelocity += 10;
+		
 	}
 	
 	/**
@@ -127,6 +136,14 @@ public class Player extends MovingImage{
 	public int getState() {
 		return state;
 		
+	}
+	
+	/**
+	 * Determines if the player is on a surface or not
+	 * @return true if the player is on a surface and false if not
+	 */
+	public boolean getOnASurface() {
+		return onASurface;
 	}
 
 }

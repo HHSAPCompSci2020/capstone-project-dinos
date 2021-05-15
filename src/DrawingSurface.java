@@ -70,11 +70,11 @@ public class DrawingSurface extends PApplet{
 		}
 		
 		// OBJECT OUTLINES
-		fill(255);
-		for(Item i : items) {
-			rect((float)i.x, (float)i.y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
-		}
-		rect((float)player.x, (float)player.y, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
+//		fill(255);
+//		for(Item i : items) {
+//			rect((float)i.x, (float)i.y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
+//		}
+//		rect((float)player.x, (float)player.y, (float)player.width, (float)player.height);	
 		
 		
 		// DRAWING OBJECTS
@@ -90,55 +90,64 @@ public class DrawingSurface extends PApplet{
 		
 		popMatrix();
 		
-		// PLAYER & ITEM MOVEMENT
-		if (isPressed(KeyEvent.VK_UP)) {
-			player.jump();
-		}
-		
-		player.act(platforms);
-		for(Item i : items) {
-			i.act(count);
-		}
-		
-		
-		// COLLISION DETECTION
-		for(Item i : items) {
-			if(i.intersects(player)) {
+		if(player.getState() != 0) {
+			
+			// PLAYER & ITEM MOVEMENT
+			if (isPressed(KeyEvent.VK_UP)) {
+				player.jump();
+			} else if(isPressed(KeyEvent.VK_DOWN)) {
+				player.duck();
+				if(player.height == Player.PLAYER_HEIGHT) 
+					player = new Player(loadImage("media/doctor.png"), (int)player.x, (int)player.y+Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT/2);
+			} else {
+				if(player.height != Player.PLAYER_HEIGHT)
+					player = new Player(loadImage("media/doctor.png"), (int)player.x, (int)player.y-Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
 				
-				if(i instanceof Mask) {
-					sb.add(sb.MASK_WORTH);
-					i.spawnNewItem(1000);
+			}
+			
+			player.act(platforms);
+			for(Item i : items) {
+				i.act(count);
+			}
+			
+			
+			// COLLISION DETECTION
+			for(Item i : items) {
+				if(i.intersects(player)) {
 					
-				} else if(i instanceof Vaccine) {
-					player.setState(2);
-					i.spawnNewItem(5000, 10000);
-					
-				} else if(i instanceof Covid) {
-					if(player.getState() == 2 || player.getState() == -1) {
+					if(i instanceof Mask) {
+						sb.add(sb.MASK_WORTH);
+						i.spawnNewItem(1000);
 						
-					} else {
-					player.setState(0);
-					System.out.println("Player is dead x_x");
+					} else if(i instanceof Vaccine) {
+						player.setState(2);
+						i.spawnNewItem(5000, 10000);
+						
+					} else if(i instanceof Covid) {
+						if(player.getState() != 2 && player.getState() != -1) {
+							player.setState(0);
+							System.out.println("Player is dead x_x");
+						} 
+						
+					}
+				}
+				
+				if(i.x+i.width < 0) {
+					
+					if(i instanceof Mask) {
+						i.spawnNewItem(1000);
+					} else if(i instanceof Vaccine) {
+						i.spawnNewItem(5000, 10000);
+					} else if(i instanceof Covid) {
+						i.spawnNewItem(Item.getRandomX(1600, 2000));
 					}
 				}
 			}
 			
-			if(i.x+i.width < 0) {
-				
-				if(i instanceof Mask) {
-					i.spawnNewItem(1000);
-				} else if(i instanceof Vaccine) {
-					i.spawnNewItem(5000, 10000);
-				} else if(i instanceof Covid) {
-					i.spawnNewItem(Item.getRandomX(1000, 1500));
-				}
-			}
+			
+			sb.act(count);
+			count++;
 		}
-		
-		
-		sb.act(count);
-		
-		count++;
 	}
 	
 	/**
@@ -147,10 +156,10 @@ public class DrawingSurface extends PApplet{
 	 */
 	public void addItems(ArrayList<Item> i) {
 		
-		i.add(new Mask(loadImage("media/mask.png"), 2000, Item.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
-		i.add(new Mask(loadImage("media/mask.png"), 2500, Item.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
-		i.add(new Covid(loadImage("media/covid.png"), Item.getRandomX(1500, 2500), 300, Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
-		i.add(new Vaccine(loadImage("media/vaccine.png"),Item.getRandomX(1000, 5000), Item.getRandomY(),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
+		i.add(new Mask(loadImage("media/mask.png"), Mask.getRandomX(2000, 3000), Mask.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
+		i.add(new Covid(loadImage("media/covid.png"), 2000, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
+		i.add(new Covid(loadImage("media/covid.png"), 2800, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
+		i.add(new Vaccine(loadImage("media/vaccine.png"), Vaccine.getRandomX(1000, 5000), Vaccine.getRandomY(),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
 		
 	}
 	

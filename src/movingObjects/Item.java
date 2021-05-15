@@ -14,7 +14,7 @@ public class Item extends MovingImage{
 	private double speed;
 	private double multiplier;
 	
-	private static ArrayList<Integer> yValues = new ArrayList<Integer>(Arrays.asList(150, 300));
+	private static ArrayList<Integer> yValues = new ArrayList<Integer>(Arrays.asList(140, 260, 320));
 	
 	/**
 	 * Constructor for Item Class

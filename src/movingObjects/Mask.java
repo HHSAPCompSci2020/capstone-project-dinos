@@ -12,8 +12,8 @@ public class Mask extends Item{
 	 * MASK_WIDTH is the width of the mask on the screen
 	 * MASK_HEIGHT is the height of the mask on the screen
 	 */
-	public static final int MASK_WIDTH = 80;
-	public static final int MASK_HEIGHT = 80;
+	public static final int MASK_WIDTH = 60;
+	public static final int MASK_HEIGHT = 60;
 	
 	
 	/**
