@@ -59,7 +59,6 @@ public class DrawingSurface extends PApplet{
 
 		scale(ratioX, ratioY);
 		
-		
 		// DRAWING PLATFORM
 		fill(100);
 		for (Shape s : platforms) {
