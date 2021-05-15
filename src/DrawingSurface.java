@@ -114,9 +114,12 @@ public class DrawingSurface extends PApplet{
 					i.spawnNewItem(5000, 10000);
 					
 				} else if(i instanceof Covid) {
+					if(player.getState() == 2 || player.getState() == -1) {
+						
+					} else {
 					player.setState(0);
 					System.out.println("Player is dead x_x");
-					
+					}
 				}
 			}
 			
@@ -125,7 +128,7 @@ public class DrawingSurface extends PApplet{
 				if(i instanceof Mask) {
 					i.spawnNewItem(1000);
 				} else if(i instanceof Vaccine) {
-					
+					i.spawnNewItem(5000, 10000);
 				} else if(i instanceof Covid) {
 					i.spawnNewItem(Item.getRandomX(1000, 1500));
 				}
@@ -147,7 +150,7 @@ public class DrawingSurface extends PApplet{
 		i.add(new Mask(loadImage("media/mask.png"), 2000, Item.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
 		i.add(new Mask(loadImage("media/mask.png"), 2500, Item.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
 		i.add(new Covid(loadImage("media/covid.png"), Item.getRandomX(1500, 2500), 300, Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
-		
+		i.add(new Vaccine(loadImage("media/vaccine.png"),Item.getRandomX(1000, 5000), Item.getRandomY(),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
 		
 	}
 	

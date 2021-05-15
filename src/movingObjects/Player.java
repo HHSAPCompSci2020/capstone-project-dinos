@@ -24,7 +24,8 @@ public class Player extends MovingImage{
 	private boolean onASurface;
 	private double gravity;
 	private double jumpStrength;
-	private int state; // 0 = Dead	1 = Alive	2 = Invincible
+	private int state; // 0 = Dead	1 = Alive	-1 or 2 = Invincible
+	private int countdown = -1; //Timer for the invincibility
 	
 	/**
 	 * Constructor for Player class
@@ -68,7 +69,13 @@ public class Player extends MovingImage{
 		Rectangle2D.Double stretchY = new Rectangle2D.Double(xCoord,Math.min(yCoord,yCoord2),width,height+Math.abs(yVelocity));
 
 		onASurface = false;
-		
+		if(state == 2) {
+			countdown = 300;
+			state = -1;
+		} 
+		if(countdown == 0) {
+			state = 1;
+		}
 		if (yVelocity > 0) {
 			Shape standingSurface = null;
 			for (Shape s : platforms) {
@@ -101,6 +108,7 @@ public class Player extends MovingImage{
 			yVelocity = 0;
 		
 		moveToLocation(xCoord, yCoord2);
+		countdown--;
 	}
 	
 	/**
