@@ -24,7 +24,7 @@ public class Vaccine extends Item{
 	 * @param h height of Vaccine
 	 */
 	public Vaccine(PImage img, int x, int y, int w, int h) {
-		super(img, x, y, w, h);
+		super(img, x, y, w, h, -7, 0);
 		// TODO Auto-generated constructor stub
 	}
 

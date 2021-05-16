@@ -24,10 +24,10 @@ public class Item extends MovingImage{
 	 * @param w width of Item
 	 * @param h height of Item
 	 */
-	public Item(PImage img, int x, int y, int w, int h) {
+	public Item(PImage img, int x, int y, int w, int h, double speed, double multiplier) {
 		super(img, x, y, w, h);
-		speed = -7;
-		multiplier = 0;
+		this.speed = speed;
+		this.multiplier = multiplier;
 		
 	}
 	
@@ -49,6 +49,17 @@ public class Item extends MovingImage{
 		
 		
 	}
+	
+	/**
+	 * Spawns a new item at a certain x location and a random y
+	 * @param x x coordinate of the new location
+	 */
+	public void spawn(int x, int y) {
+		
+		moveToLocation(x, getRandomY());
+		
+	}
+	
 	
 	/**
 	 * Spawns a new item at a certain x location and a random y

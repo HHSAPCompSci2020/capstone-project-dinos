@@ -8,7 +8,8 @@ import java.awt.*;
 public class Main extends JFrame{
 
 	private JPanel cardPanel;
-	private DrawingSurface panel1;
+	private OptionPanel panel1;
+	private DrawingSurface panel2;
 	
 	/**
 	 * Constructor for Main class
@@ -23,11 +24,14 @@ public class Main extends JFrame{
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
 	    
-	    panel1 = new DrawingSurface();
-	    panel1.init();
+	    panel1 = new OptionPanel(this);    
+	    panel2 = new DrawingSurface(this);
+	    panel2.init();
 	    
-	    cardPanel.add(panel1);
+	    cardPanel.add(panel1, "1");
+	    cardPanel.add(panel2, "2");
 	    add(cardPanel);
+	    addKeyListener(panel2);
 	    
 	    setVisible(true);
 	}
@@ -45,8 +49,11 @@ public class Main extends JFrame{
 	/**
 	 * Changes the panel shown
 	 */
-	public void changePanel() {
-		((CardLayout)cardPanel.getLayout()).next(cardPanel);
-		panel1.requestFocus();
+	public void changePanel(String name) {
+		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
+		requestFocus();
+		
+		if(name.equals("2"))
+			panel2.startGame();
 	}
 }

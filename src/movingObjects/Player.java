@@ -17,14 +17,14 @@ public class Player extends MovingImage{
 	 * PLAYER_WIDTH is the width of the player on the screen
 	 * PLAYER_HEIGHT is the height of the player on the screen
 	 */
-	public static final int PLAYER_WIDTH = 70;
+	public static final int PLAYER_WIDTH = 60;
 	public static final int PLAYER_HEIGHT = 100;
 	
 	private double yVelocity;
 	private boolean onASurface;
 	private double gravity;
 	private double jumpStrength;
-	private int state; // 0 = Dead	1 = Alive	-1 or 2 = Invincible
+	private int state; // 0 = Dead	1 = Alive	-1 or 2 = Invincible	3 = Game Has Not Started
 	private int countdown = -1; //Timer for the invincibility
 	
 	/**
@@ -65,7 +65,7 @@ public class Player extends MovingImage{
 	 * Method that is called repeatedly to make Player move/act
 	 * @param platforms ArrayList of Shapes that are the platforms Player can jump on
 	 */
-	public void act(ArrayList<Shape> platforms) {
+	public void act(ArrayList<Platform> platforms) {
 		
 		double xCoord = getX();
 		double yCoord = getY();
@@ -87,7 +87,7 @@ public class Player extends MovingImage{
 		}
 		if (yVelocity > 0) {
 			Shape standingSurface = null;
-			for (Shape s : platforms) {
+			for (Platform s : platforms) {
 				if (s.intersects(stretchY)) {
 					onASurface = true;
 					standingSurface = s;

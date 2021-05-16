@@ -17,8 +17,8 @@ public class Platform extends Item {
 	 * @param h height of Platform
 	 */
 	public Platform(PImage img, int x, int y, int w, int h) {
-		super(img, x, y, w, h);
-		// TODO Auto-generated constructor stub
+		super(img, x, y, w, h, -5, 0);
 	}
+		
 
 }

@@ -15,7 +15,6 @@ public class Mask extends Item{
 	public static final int MASK_WIDTH = 60;
 	public static final int MASK_HEIGHT = 60;
 	
-	
 	/**
 	 * Constructor for Mask class
 	 * @param img image file for what Mask looks like
@@ -25,7 +24,7 @@ public class Mask extends Item{
 	 * @param h height of Mask
 	 */
 	public Mask(PImage img, int x, int y, int w, int h) {
-		super(img, x, y, w, h);
+		super(img, x, y, w, h, -7, 0);
 		// TODO Auto-generated constructor stub
 	}
 

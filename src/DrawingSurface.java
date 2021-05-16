@@ -2,11 +2,9 @@
  * DrawingSurface class where all of the objects are instantiated and methods are called
  * @author Clarence Choy
  */
-import java.awt.Rectangle;
-import java.awt.Shape;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import movingObjects.*;
 import processing.core.PApplet;
 
@@ -23,24 +21,24 @@ public class DrawingSurface extends PApplet{
 	private Scoreboard sb;
 
 	private ArrayList<Integer> keys;
-	private ArrayList<Shape> platforms;
+	private ArrayList<Platform> platforms;
 	private ArrayList<Item> items;
 	
 	private int count;
 	
 	/**
 	 * Constructor for DrawingSurface class
+	 * @param w Main class
 	 */
-	public DrawingSurface() {
+	public DrawingSurface(Main w) {
 		keys = new ArrayList<Integer>();
-		platforms = new ArrayList<Shape>();
-		platforms.add(new Rectangle(0, 400, 800, 200));
+		platforms = new ArrayList<Platform>();
 		items = new ArrayList<Item>();
 		sb = new Scoreboard();
-		
-		addItems(items);
-		player = new Player(loadImage("media/doctor.png"), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
 		count = 0;
+		
+		addGameElements(items, platforms);
+		
 	}
 	
 	/**
@@ -59,27 +57,21 @@ public class DrawingSurface extends PApplet{
 
 		scale(ratioX, ratioY);
 		
-		// DRAWING PLATFORM
-		fill(100);
-		for (Shape s : platforms) {
-			if (s instanceof Rectangle) {
-				Rectangle r = (Rectangle)s;
-				rect(r.x,r.y,r.width,r.height);
-			}
-		}
 		
 		// OBJECT OUTLINES
-//		fill(255);
-//		for(Item i : items) {
-//			rect((float)i.x, (float)i.y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
-//		}
-//		rect((float)player.x, (float)player.y, (float)player.width, (float)player.height);	
+		fill(255);
+		for(Item i : items) {
+			rect((float)i.x, (float)i.y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
+		}
+		rect((float)player.x, (float)player.y, (float)player.width, (float)player.height);	
 		
 		
 		// DRAWING OBJECTS
 		player.draw(this);
 		for(Item i : items)
 			i.draw(this);
+		for(Platform p : platforms)
+			p.draw(this);
 		
 		
 		// DISPLAYING SCORE
@@ -89,7 +81,7 @@ public class DrawingSurface extends PApplet{
 		
 		popMatrix();
 		
-		if(player.getState() != 0) {
+		if(player.getState() != 0 && player.getState() != 3) {
 			
 			// PLAYER & ITEM MOVEMENT
 			if (isPressed(KeyEvent.VK_UP)) {
@@ -108,6 +100,8 @@ public class DrawingSurface extends PApplet{
 			for(Item i : items) {
 				i.act(count);
 			}
+			for(Platform p : platforms)
+				p.act(count);
 			
 			
 			// COLLISION DETECTION
@@ -126,8 +120,8 @@ public class DrawingSurface extends PApplet{
 						if(player.getState() != 2 && player.getState() != -1) {
 							player.setState(0);
 							System.out.println("Player is dead x_x");
+							
 						} 
-						
 					}
 				}
 				
@@ -143,6 +137,13 @@ public class DrawingSurface extends PApplet{
 				}
 			}
 			
+			for(Platform p : platforms) {
+				if(p.x+p.width < 0) {
+					p.moveToLocation(980, 400);
+					
+				}
+			}
+			
 			
 			sb.act(count);
 			count++;
@@ -153,13 +154,18 @@ public class DrawingSurface extends PApplet{
 	 * Adds the many items to the game in the start
 	 * @param i ArrayList of Items that the new items are added to
 	 */
-	public void addItems(ArrayList<Item> i) {
+	public void addGameElements(ArrayList<Item> i, ArrayList<Platform> p) {
+		
+		player = new Player(loadImage("media/doctor.png"), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
+		player.setState(3);
 		
 		i.add(new Mask(loadImage("media/mask.png"), Mask.getRandomX(2000, 3000), Mask.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
 		i.add(new Covid(loadImage("media/covid.png"), 2000, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
 		i.add(new Covid(loadImage("media/covid.png"), 2800, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
 		i.add(new Vaccine(loadImage("media/vaccine.png"), Vaccine.getRandomX(1000, 5000), Vaccine.getRandomY(),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
 		
+		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
+		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));
 	}
 	
 	/**
@@ -184,5 +190,13 @@ public class DrawingSurface extends PApplet{
 	 */
 	public boolean isPressed(Integer code) {
 		return keys.contains(code);
+	}
+	
+	/**
+	 * Begins the game
+	 */
+	public void startGame() {
+		player.setState(1);
+		
 	}
 }
