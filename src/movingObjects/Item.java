@@ -105,7 +105,23 @@ public class Item extends MovingImage{
 		return minX + n;
 		
 	}
-	
+	/**
+	 * Chooses a random x value from a minimum and maximum
+	 * @param check the Item that it is checking for overlap with
+	 * @return If the items are overlapping
+	 */
+	public boolean isOverlapping(Item check) {
+		if (getX() >= check.x + check.getWidth() || check.x >= getX() + getWidth()) {
+            return false;
+        }
+ 
+        if (getY() >= check.y + check.getHeight() || check.y >= getY() + getHeight()) {
+            return false;
+        }
+ 
+		return true;
+		
+	}
 	
 	
 

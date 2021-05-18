@@ -1,6 +1,6 @@
 /**
  * Represents the masks and is a subclass of Item
- * @author 
+ * @author Isaac Phoon
  */
 package movingObjects;
 

@@ -112,10 +112,23 @@ public class DrawingSurface extends PApplet{
 					if(i instanceof Mask) {
 						sb.add(sb.MASK_WORTH);
 						i.spawnNewItem(1000);
-						
+						for(Item j : items) {
+							if(i != j) {
+								if(i.isOverlapping(j)) {
+									i.spawnNewItem(1000);
+								}
+							}
+						}
 					} else if(i instanceof Vaccine) {
 						player.setState(2);
 						i.spawnNewItem(5000, 10000);
+						for(Item j : items) {
+							if(i != j) {
+								if(i.isOverlapping(j)) {
+									i.spawnNewItem(5000, 10000);
+								}
+							}
+						}
 						
 					} else if(i instanceof Covid) {
 						if(player.getState() != 2 && player.getState() != -1) {
@@ -129,10 +142,31 @@ public class DrawingSurface extends PApplet{
 					
 					if(i instanceof Mask) {
 						i.spawnNewItem(1000);
+						for(Item j : items) {
+							if(i != j) {
+								if(i.isOverlapping(j)) {
+									i.spawnNewItem(1000);
+								}
+							}
+						}
 					} else if(i instanceof Vaccine) {
 						i.spawnNewItem(5000, 10000);
+						for(Item j : items) {
+							if(i != j) {
+								if(i.isOverlapping(j)) {
+									i.spawnNewItem(5000, 10000);
+								}
+							}
+						}
 					} else if(i instanceof Covid) {
 						i.spawnNewItem(Item.getRandomX(1600, 2000));
+						for(Item j : items) {
+							if(i != j) {
+								if(i.isOverlapping(j)) {
+									i.spawnNewItem(Item.getRandomX(1600, 2000));
+								}
+							}
+						}
 					}
 				}
 			}
