@@ -18,6 +18,7 @@ public class DrawingSurface extends PApplet{
 	public static final int DRAWING_HEIGHT = 600;
 	
 	private Player player;
+	private String playerImage;
 	private Scoreboard sb;
 
 	private ArrayList<Integer> keys;
@@ -37,8 +38,8 @@ public class DrawingSurface extends PApplet{
 		sb = new Scoreboard();
 		count = 0;
 		
+		playerImage = "media/doctor.png";
 		addGameElements(items, platforms);
-		
 	}
 	
 	/**
@@ -89,10 +90,10 @@ public class DrawingSurface extends PApplet{
 			} else if(isPressed(KeyEvent.VK_DOWN)) {
 				player.duck();
 				if(player.height == Player.PLAYER_HEIGHT) 
-					player = new Player(loadImage("media/doctor.png"), (int)player.x, (int)player.y+Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT/2);
+					player = new Player(loadImage(playerImage), (int)player.x, (int)player.y+Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT/2, player.getState());
 			} else {
 				if(player.height != Player.PLAYER_HEIGHT)
-					player = new Player(loadImage("media/doctor.png"), (int)player.x, (int)player.y-Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
+					player = new Player(loadImage(playerImage), (int)player.x, (int)player.y-Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, player.getState());
 				
 			}
 			
@@ -119,7 +120,6 @@ public class DrawingSurface extends PApplet{
 					} else if(i instanceof Covid) {
 						if(player.getState() != 2 && player.getState() != -1) {
 							player.setState(0);
-							System.out.println("Player is dead x_x");
 							
 						} 
 					}
@@ -144,28 +144,50 @@ public class DrawingSurface extends PApplet{
 				}
 			}
 			
+			if(player.getState() == 2 || player.getState() == -1) {
+				textSize(24);
+				fill(40, 200, 100);
+				text(player.getCountdown(), 30, 200);
+			}
 			
 			sb.act(count);
 			count++;
+		}
+		
+		// GAME OVER TEXT
+		if(player.getState() == 0) {
+			textSize(24);
+			fill(210, 25, 55);
+			int strWidth = this.getFontMetrics(getFont()).stringWidth("GAME OVER   ");
+			text("GAME OVER   ", 400-strWidth/2, 200);
 		}
 	}
 	
 	/**
 	 * Adds the many items to the game in the start
 	 * @param i ArrayList of Items that the new items are added to
+	 * @param p ArrayList of Platforms that the new platforms are added to
 	 */
 	public void addGameElements(ArrayList<Item> i, ArrayList<Platform> p) {
 		
-		player = new Player(loadImage("media/doctor.png"), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT);
-		player.setState(3);
+		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3);
 		
 		i.add(new Mask(loadImage("media/mask.png"), Mask.getRandomX(2000, 3000), Mask.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
 		i.add(new Covid(loadImage("media/covid.png"), 2000, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
 		i.add(new Covid(loadImage("media/covid.png"), 2800, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
-		i.add(new Vaccine(loadImage("media/vaccine.png"), Vaccine.getRandomX(1000, 5000), Vaccine.getRandomY(),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
+		i.add(new Vaccine(loadImage("media/vaccine.png"), Vaccine.getRandomX(5000, 10000), Vaccine.getRandomY(),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
 		
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));
+	}
+	
+	/**
+	 * Creates a new Player with the image of the file playerImage
+	 * @param playerImage file of the image you want the player to change to
+	 */
+	public void changePlayer(String playerImage) {
+		this.playerImage = playerImage;
+		player = new Player(loadImage(playerImage), (int)player.x, (int)player.y, (int)player.width, (int)player.height, 3);
 	}
 	
 	/**

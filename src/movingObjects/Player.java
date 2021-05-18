@@ -25,7 +25,8 @@ public class Player extends MovingImage{
 	private double gravity;
 	private double jumpStrength;
 	private int state; // 0 = Dead	1 = Alive	-1 or 2 = Invincible	3 = Game Has Not Started
-	private int countdown = -1; //Timer for the invincibility
+	private int countdown;
+	private long start;
 	
 	/**
 	 * Constructor for Player class
@@ -35,13 +36,15 @@ public class Player extends MovingImage{
 	 * @param w width of Player
 	 * @param h height of Player
 	 */
-	public Player(PImage img, int x, int y, int w, int h) {
+	public Player(PImage img, int x, int y, int w, int h, int state) {
 		super(img, x, y, w, h);
 		yVelocity = 0;
 		onASurface = false;
 		gravity = 0.9;
 		jumpStrength = 20;
-		state = 1;
+		this.state = state;
+		start = 0;
+		countdown = 5;
 	}
 	
 	/**
@@ -67,6 +70,18 @@ public class Player extends MovingImage{
 	 */
 	public void act(ArrayList<Platform> platforms) {
 		
+		// INVINICIBILITY
+		if(state == 2) {
+			start = System.currentTimeMillis();
+			state = -1;
+		} 
+
+		if(state == -1 && countdown <= (int)(System.currentTimeMillis()-start)/1000) {
+			state = 1;
+			start = 0;
+		}
+		
+		
 		double xCoord = getX();
 		double yCoord = getY();
 		double width = getWidth();
@@ -78,13 +93,7 @@ public class Player extends MovingImage{
 		Rectangle2D.Double stretchY = new Rectangle2D.Double(xCoord,Math.min(yCoord,yCoord2),width,height+Math.abs(yVelocity));
 
 		onASurface = false;
-		if(state == 2) {
-			countdown = 300;
-			state = -1;
-		} 
-		if(countdown == 0) {
-			state = 1;
-		}
+		
 		if (yVelocity > 0) {
 			Shape standingSurface = null;
 			for (Platform s : platforms) {
@@ -117,7 +126,6 @@ public class Player extends MovingImage{
 			yVelocity = 0;
 		
 		moveToLocation(xCoord, yCoord2);
-		countdown--;
 	}
 	
 	/**
@@ -144,6 +152,14 @@ public class Player extends MovingImage{
 	 */
 	public boolean getOnASurface() {
 		return onASurface;
+	}
+	
+	/**
+	 * Gets the number of seconds left of the player's invincibility
+	 * @return number of seconds left that the invincibility lasts
+	 */
+	public int getCountdown() {
+		return countdown - (int)(System.currentTimeMillis()-start)/1000;
 	}
 
 }

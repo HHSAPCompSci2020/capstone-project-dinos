@@ -26,18 +26,6 @@ public class Scoreboard {
 	 * @param amount number of points the score increases/decreases by
 	 */
 	public void add(int amount) {
-//		int time = 1;
-//		//check if player
-//		while (p != isdead) {
-//			score += amount;
-//			multiplyer++;
-//			if(multiplyer>100*(time*time)) {
-//				amount*=1.2;
-//				time++;
-//			}
-//
-//		}
-
 		score +=  amount;
 
 	}
