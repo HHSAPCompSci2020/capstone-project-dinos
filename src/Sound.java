@@ -14,6 +14,7 @@ public class Sound {
 	private  File sound2 = new File(new File("").getAbsolutePath() + "\\2.wav");
 	
 	private  File sound3 = new File(new File("").getAbsolutePath() + "\\3.wav");
+	private  File sound4 = new File(new File("").getAbsolutePath() + "\\4.wav");
 	
 	public void jump() {
 		 try {
@@ -47,6 +48,18 @@ public class Sound {
 	
 	
 	public void pickVac() {
+		 try {
+	            AudioInputStream ais = AudioSystem.getAudioInputStream(sound4);
+	            Clip c = AudioSystem.getClip();
+	            c.open(ais); //Clip opens AudioInputStream
+	            c.start(); //Start playing audio
+
+	            //sleep thread for length of the song
+	            Thread.sleep((int)(c.getMicrosecondLength() * 0.001));
+	        } catch (Exception e) {
+	            System.out.println(e.getMessage());
+	        }
+		
 		
 	}
 	
