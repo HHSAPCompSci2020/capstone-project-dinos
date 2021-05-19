@@ -4,6 +4,7 @@
  */
 
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.ArrayList;
 import movingObjects.*;
 import processing.core.PApplet;
@@ -20,7 +21,10 @@ public class DrawingSurface extends PApplet{
 	private Player player;
 	private String playerImage;
 	private Scoreboard sb;
-	private Sound sound;
+	private EasySound sound;
+	private EasySound sound1;
+	private EasySound sound2;
+	private EasySound sound3;
 
 	private ArrayList<Integer> keys;
 	private ArrayList<Platform> platforms;
@@ -38,8 +42,11 @@ public class DrawingSurface extends PApplet{
 		items = new ArrayList<Item>();
 		sb = new Scoreboard();
 		count = 0;
-		sound = new Sound();
 		
+		sound = new EasySound(new File("").getAbsolutePath() + "\\1.wav");
+		sound1 = new EasySound(new File("").getAbsolutePath() + "\\2.wav");
+		sound2 = new EasySound(new File("").getAbsolutePath() + "\\3.wav");
+		sound3 = new EasySound(new File("").getAbsolutePath() + "\\4.wav");
 		playerImage = "media/doctor.png";
 		addGameElements(items, platforms);
 	}
@@ -88,7 +95,7 @@ public class DrawingSurface extends PApplet{
 			
 			// PLAYER & ITEM MOVEMENT
 			if (isPressed(KeyEvent.VK_UP)) {
-				player.jump();
+				player.jump(); 
 			} else if(isPressed(KeyEvent.VK_DOWN)) {
 				player.duck();
 				if(player.height == Player.PLAYER_HEIGHT) 
@@ -112,6 +119,7 @@ public class DrawingSurface extends PApplet{
 				if(i.intersects(player)) {
 					
 					if(i instanceof Mask) {
+						sound2.play();
 						sb.add(sb.MASK_WORTH);
 						i.spawnNewItem(1000);
 						for(Item j : items) {
@@ -122,6 +130,7 @@ public class DrawingSurface extends PApplet{
 							}
 						}
 					} else if(i instanceof Vaccine) {
+						sound3.play();
 						player.setState(2);
 						i.spawnNewItem(5000, 10000);
 						for(Item j : items) {
@@ -133,10 +142,14 @@ public class DrawingSurface extends PApplet{
 						}
 						
 					} else if(i instanceof Covid) {
+						sound1.play();
 						if(player.getState() != 2 && player.getState() != -1) {
+							
 							player.setState(0);
 							
+							
 						} 
+						
 					}
 				}
 				

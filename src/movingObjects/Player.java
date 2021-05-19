@@ -53,6 +53,7 @@ public class Player extends MovingImage{
 	public void jump() {
 		if (onASurface)
 			yVelocity -= jumpStrength;
+		
 	}
 	
 	/**
