@@ -20,6 +20,7 @@ public class DrawingSurface extends PApplet{
 	private Player player;
 	private String playerImage;
 	private Scoreboard sb;
+	private Sound sound;
 
 	private ArrayList<Integer> keys;
 	private ArrayList<Platform> platforms;
@@ -37,6 +38,7 @@ public class DrawingSurface extends PApplet{
 		items = new ArrayList<Item>();
 		sb = new Scoreboard();
 		count = 0;
+		sound = new Sound();
 		
 		playerImage = "media/doctor.png";
 		addGameElements(items, platforms);
