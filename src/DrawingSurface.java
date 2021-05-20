@@ -21,13 +21,12 @@ public class DrawingSurface extends PApplet{
 	private String playerImage;
 	private Scoreboard sb;
 	private Sound sound;
-
 	private ArrayList<Integer> keys;
 	private ArrayList<Platform> platforms;
 	private ArrayList<Item> items;
-	
 	private int count;
-	
+	private float weather;
+	private boolean cycle;
 	/**
 	 * Constructor for DrawingSurface class
 	 * @param w Main class
@@ -39,7 +38,8 @@ public class DrawingSurface extends PApplet{
 		sb = new Scoreboard();
 		count = 0;
 		sound = new Sound();
-		
+		weather = 0;
+		cycle = true;
 		playerImage = "media/doctor.png";
 		addGameElements(items, platforms);
 	}
@@ -48,8 +48,19 @@ public class DrawingSurface extends PApplet{
 	 * Draw method that is responsible for all of the changes on screen
 	 */
 	public void draw() {
-		background(0, 255, 255);
-		
+		background(52, 180f - weather, 235);
+		if(cycle == true) {
+		weather += 0.5;
+		}
+		if(weather == 130) {
+			cycle = false;
+		}
+		if(cycle == false) {
+			weather -= 0.5;
+		}
+		if(weather == 0) {
+			cycle = true;
+		}
 		pushMatrix();
 
 		int width = getWidth();
