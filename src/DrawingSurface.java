@@ -60,15 +60,15 @@ public class DrawingSurface extends PApplet{
 	 * Draw method that is responsible for all of the changes on screen
 	 */
 	public void draw() {
-		background(52, 180f - weather, 235);
+		background(52, 180f - weather, 235f - weather);
 		if(cycle == true) {
-		weather += 0.5;
+			weather += 0.3;
 		}
 		if(weather == 130) {
 			cycle = false;
 		}
 		if(cycle == false) {
-			weather -= 0.5;
+			weather -= 0.3;
 		}
 		if(weather == 0) {
 			cycle = true;
