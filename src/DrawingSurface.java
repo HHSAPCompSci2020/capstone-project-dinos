@@ -98,7 +98,8 @@ public class DrawingSurface extends PApplet {
 		// DISPLAYING SCORE
 		textSize(24);
 		fill(0, 0, 0);
-		text(sb.toString(), 570, 30);
+		text(sb.displayD(),700, 50);
+		text(sb.toString(), 669, 20);
 
 
 		if (player.getState() != 0 && player.getState() != 3) {
