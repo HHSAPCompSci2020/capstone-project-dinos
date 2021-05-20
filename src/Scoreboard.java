@@ -33,10 +33,10 @@ public class Scoreboard {
 	
 	/**
 	 * Sets the score
-	 * @param s score you want to set to
+	 * @param score score you want to set to
 	 */
-	public void setScore(int s) {
-		score = s;
+	public void setScore(int score) {
+		this.score = score;
 		
 	}
 

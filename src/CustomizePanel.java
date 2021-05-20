@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Toolkit;
 
 public class CustomizePanel extends JPanel implements ActionListener{
@@ -20,7 +19,6 @@ public class CustomizePanel extends JPanel implements ActionListener{
 	private JPanel p;
 	private JButton doctor, dinosaur;
 	private JButton exit;
-	private Image docImage, dinoImage;
 	
 	private String message;
 	
@@ -34,8 +32,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		d = w.getDrawingSurface();
 		p = new JPanel();
 		setBackground(new Color(75, 200, 50));
-		p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
-		//p.add(Box.createVerticalStrut(500));
+		p.setLayout(new BoxLayout(p, BoxLayout.X_AXIS));
 		
 		doctor = new JButton("Doctor");
 		doctor.addActionListener(this);
@@ -44,9 +41,6 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		
 		exit = new JButton("Back to Menu");
 		exit.addActionListener(this);
-		
-		docImage = Toolkit.getDefaultToolkit().getImage("media/doctor.png");
-		dinoImage = Toolkit.getDefaultToolkit().getImage("media/dinosaur.png");
 		
 		message = "Customize your character! Click the tag above to select!";
 		
@@ -77,8 +71,8 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		int strWidth = g.getFontMetrics().stringWidth(message);
 		g.drawString(message, 400-strWidth/2, 300);
 		
-		g2.drawImage(docImage, 270, 100, 60, 100, this);
-		g2.drawImage(dinoImage, 350, 100, 60, 90, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 270, 100, 60, 100, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dinosaur.png"), 350, 100, 60, 90, this);
 		
 		g2.setTransform(at);
 		
