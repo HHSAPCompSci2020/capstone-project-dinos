@@ -98,17 +98,17 @@ public class DrawingSurface extends PApplet{
 			
 			// PLAYER & ITEM MOVEMENT
 			if (isPressed(KeyEvent.VK_UP)) {
-				if(player.jump()==true) {
+				if(player.jump()) {
 					sound.play();
 				}
 				
 			} else if(isPressed(KeyEvent.VK_DOWN)) {
 				player.duck();
 				if(player.height == Player.PLAYER_HEIGHT) 
-					player = new Player(loadImage(playerImage), (int)player.x, (int)player.y+Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT/2, player.getState());
+					player = new Player(loadImage(playerImage), (int)player.x, (int)player.y+Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT/2, player.getState(), player.getVaccineStart());
 			} else {
 				if(player.height != Player.PLAYER_HEIGHT)
-					player = new Player(loadImage(playerImage), (int)player.x, (int)player.y-Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, player.getState());
+					player = new Player(loadImage(playerImage), (int)player.x, (int)player.y-Player.PLAYER_HEIGHT/2, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, player.getState(), player.getVaccineStart());
 				
 			}
 			
@@ -225,7 +225,7 @@ public class DrawingSurface extends PApplet{
 	 */
 	public void addGameElements(ArrayList<Item> i, ArrayList<Platform> p) {
 		
-		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3);
+		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3, System.currentTimeMillis());
 		
 		i.add(new Mask(loadImage("media/mask.png"), test.getRandomX(2000, 3000), test.getRandomY(false), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
 		i.add(new Covid(loadImage("media/covid.png"), 2000, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
@@ -242,7 +242,7 @@ public class DrawingSurface extends PApplet{
 	 */
 	public void changePlayer(String playerImage) {
 		this.playerImage = playerImage;
-		player = new Player(loadImage(playerImage), (int)player.x, (int)player.y, (int)player.width, (int)player.height, 3);
+		player = new Player(loadImage(playerImage), (int)player.x, (int)player.y, (int)player.width, (int)player.height, 3, System.currentTimeMillis());
 	}
 	
 	/**

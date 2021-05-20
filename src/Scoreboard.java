@@ -41,8 +41,6 @@ public class Scoreboard {
 			score += multiplier;
 					
 		} 
-	
-		
 	}
 
 	/**

@@ -37,19 +37,20 @@ public class Player extends MovingImage {
 	 * @param w   width of Player
 	 * @param h   height of Player
 	 */
-	public Player(PImage img, int x, int y, int w, int h, int state) {
+	public Player(PImage img, int x, int y, int w, int h, int state, long time) {
 		super(img, x, y, w, h);
 		yVelocity = 0;
 		onASurface = false;
 		gravity = 0.9;
 		jumpStrength = 20;
 		this.state = state;
-		start = 0;
+		start = time;
 		countdown = 5;
 	}
 
 	/**
 	 * Makes the Player jump up
+	 * @return if the player actually jumped or not
 	 */
 	public boolean jump() {
 		if (onASurface) {
@@ -71,9 +72,7 @@ public class Player extends MovingImage {
 
 	/**
 	 * Method that is called repeatedly to make Player move/act
-	 * 
-	 * @param platforms ArrayList of Shapes that are the platforms Player can jump
-	 *                  on
+	 * @param platforms ArrayList of Shapes that are the platforms Player can jump on
 	 */
 	public void act(ArrayList<Platform> platforms) {
 
@@ -138,7 +137,6 @@ public class Player extends MovingImage {
 
 	/**
 	 * Sets the state of the player
-	 * 
 	 * @param state state you want the player to be set to
 	 */
 	public void setState(int state) {
@@ -148,7 +146,6 @@ public class Player extends MovingImage {
 
 	/**
 	 * Gets the state of the player
-	 * 
 	 * @return state of the player
 	 */
 	public int getState() {
@@ -158,7 +155,6 @@ public class Player extends MovingImage {
 
 	/**
 	 * Determines if the player is on a surface or not
-	 * 
 	 * @return true if the player is on a surface and false if not
 	 */
 	public boolean getOnASurface() {
@@ -167,11 +163,20 @@ public class Player extends MovingImage {
 
 	/**
 	 * Gets the number of seconds left of the player's invincibility
-	 * 
 	 * @return number of seconds left that the invincibility lasts
 	 */
 	public int getCountdown() {
 		return countdown - (int) (System.currentTimeMillis() - start) / 1000;
+		
+	}
+	
+	/**
+	 * Gets the time in milliseconds that the vaccine item was acquired
+	 * @return time in milliseconds that the vaccine item was acquired
+	 */
+	public long getVaccineStart() {
+		return start;
+		
 	}
 
 }
