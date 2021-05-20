@@ -32,37 +32,5 @@ public class Covid extends Item{
 		super(img, x, y, w, h, -7, 0);
 		// TODO Auto-generated constructor stub
 	}
-	
-	/**
-	 * Spawns a new item at a certain x location and a random y only for Covid
-	 * @param x x coordinate of the new location
-	 */
-	public void spawnNewItem(int x) {
-		
-		moveToLocation(x, getRandomY());
-		
-	}
-	
-	/**
-	 * Spawns a new item at a random x and a random y only for Covid
-	 * @param minX minimum x value the item can spawn at
-	 * @param maxX maximum x value the item can spawn at
-	 */
-	public void spawnNewItem(int minX, int maxX) {
-		
-		moveToLocation(getRandomX(minX, maxX), getRandomY());
-		
-	}
-	
-	/**
-	 * Chooses a random y value from an array list of set y values only for Covid
-	 * @return random y coordinate value
-	 */
-	public static int getRandomY() {
-		
-		int n = (int) (Math.random() * yValues.size());
-		return yValues.get(n);
-		
-	}
 
 }

@@ -8,7 +8,7 @@ public class Scoreboard {
 	/**
 	 * MASK_WORTH is the point value of a mask
 	 */
-	public final int MASK_WORTH = 20;
+	public final int MASK_WORTH = 30;
 
 	private int score;
 	private int multiplier;
