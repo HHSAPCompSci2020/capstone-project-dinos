@@ -32,5 +32,21 @@ public class Covid extends Item{
 		super(img, x, y, w, h, -7, 0);
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Checks if Covid is too close to another Covid
+	 * @param check other instance of Covid
+	 * @return true if the two Covid objects are too close and false otherwise
+	 */
+	public boolean isTooClose(Covid check) {
+		
+		if(this.intersects(check))
+			return true;
+		
+		if(Math.abs(x-check.x) <= 600)
+			return true;
+		
+		return false;
+	}
 
 }

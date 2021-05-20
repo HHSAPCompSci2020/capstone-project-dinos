@@ -24,6 +24,7 @@ public class DrawingSurface extends PApplet{
 	private ArrayList<Integer> keys;
 	private ArrayList<Platform> platforms;
 	private ArrayList<Item> items;
+	private ArrayList<Covid> covid;
 	private EasySound sound;
 	private EasySound sound1;
 	private EasySound sound2;
@@ -41,6 +42,7 @@ public class DrawingSurface extends PApplet{
 		keys = new ArrayList<Integer>();
 		platforms = new ArrayList<Platform>();
 		items = new ArrayList<Item>();
+		covid = new ArrayList<Covid>();
 		sb = new Scoreboard();
 		count = 0;
 		weather = 0;
@@ -53,7 +55,7 @@ public class DrawingSurface extends PApplet{
 		
 		test = new Item(loadImage("media/mask.png"), 0, 0, 0, 0, 0, 0);
 		playerImage = "media/doctor.png";
-		addGameElements(items, platforms);
+		addGameElements(items, covid, platforms);
 	}
 	
 	/**
@@ -88,17 +90,19 @@ public class DrawingSurface extends PApplet{
 		// OBJECT OUTLINES
 		fill(255);
 		for(Item i : items) {
-			rect((float)i.x, (float)i.y, Mask.MASK_WIDTH, Mask.MASK_HEIGHT);
+			rect((float)i.x, (float)i.y, (float)i.width, (float)i.height);
+		}
+		for(Covid c : covid) {
+			rect((float)c.x, (float)c.y, (float)c.width, (float)c.height);
 		}
 		rect((float)player.x, (float)player.y, (float)player.width, (float)player.height);	
 		
 		
 		// DRAWING OBJECTS
 		player.draw(this);
-		for(Item i : items)
-			i.draw(this);
-		for(Platform p : platforms)
-			p.draw(this);
+		for(Item i : items) i.draw(this);
+		for(Covid c : covid) c.draw(this);
+		for(Platform p : platforms) p.draw(this);
 		
 		
 		// DISPLAYING SCORE
@@ -127,11 +131,9 @@ public class DrawingSurface extends PApplet{
 			}
 			
 			player.act(platforms);
-			for(Item i : items) {
-				i.act(count);
-			}
-			for(Platform p : platforms)
-				p.act(count);
+			for(Item i : items) i.act(count);
+			for(Item c : covid) c.act(count);
+			for(Platform p : platforms) p.act(count);
 			
 			
 			// COLLISION DETECTION
@@ -157,12 +159,6 @@ public class DrawingSurface extends PApplet{
 								while(i.isOverlapping(j)) i.spawnNewItem(10000, 20000);
 							}
 						}
-						
-					} else if(i instanceof Covid) {
-						if(player.getState() != 2 && player.getState() != -1) {
-							sound1.play();
-							player.setState(0);
-						} 
 					}
 				}
 				
@@ -183,12 +179,26 @@ public class DrawingSurface extends PApplet{
 								while(i.isOverlapping(j)) i.spawnNewItem(10000, 20000);
 							}
 						}
-						
-					} else if(i instanceof Covid) {
-						i.spawnNewItem(800, 1000);
-						for(Item j : items) {
-							if(!i.equals(j)) {
-								while(i.isOverlapping(j)) i.spawnNewItem(800, 1000);
+					}
+				}
+			}
+			
+			for(Covid c : covid) {
+				
+				if(c.intersects(player)) {
+					if(player.getState() != 2 && player.getState() != -1) {
+						sound1.play();
+						player.setState(0);
+					} 
+				}
+				
+				if(c.x+c.width < 0) {
+					c.spawnNewItem(1200, 1400);
+					for(Covid j : covid) {
+						if(!c.equals(j)) {
+							while(c.isTooClose(j)) {
+								//System.out.println("hi");
+								c.spawnNewItem(1200, 1400);
 							}
 						}
 					}
@@ -226,14 +236,15 @@ public class DrawingSurface extends PApplet{
 	 * @param i ArrayList of Items that the new items are added to
 	 * @param p ArrayList of Platforms that the new platforms are added to
 	 */
-	public void addGameElements(ArrayList<Item> i, ArrayList<Platform> p) {
+	public void addGameElements(ArrayList<Item> i, ArrayList<Covid> c, ArrayList<Platform> p) {
 		
 		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3, System.currentTimeMillis());
 		
 		i.add(new Mask(loadImage("media/mask.png"), test.getRandomX(2000, 3000), test.getRandomY(false), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
-		i.add(new Covid(loadImage("media/covid.png"), 2000, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
-		i.add(new Covid(loadImage("media/covid.png"), 2600, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
 		i.add(new Vaccine(loadImage("media/vaccine.png"), test.getRandomX(5000, 10000), test.getRandomY(false),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
+		
+		c.add(new Covid(loadImage("media/covid.png"), 2000, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
+		c.add(new Covid(loadImage("media/covid.png"), 2600, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
 		
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));
