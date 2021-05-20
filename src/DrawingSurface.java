@@ -149,65 +149,54 @@ public class DrawingSurface extends PApplet{
 					if(i instanceof Mask) {
 						sound2.play();
 						sb.add(sb.MASK_WORTH);
-						i.spawnNewItem(1000);
+						i.spawnNewItem(1500, 2500);
 						for(Item j : items) {
-							if(i != j) {
-								if(i.isOverlapping(j)) {
-									i.spawnNewItem(1000);
-								}
+							if(!i.equals(j)) {
+								while(i.isOverlapping(j)) i.spawnNewItem(1500, 2500);
 							}
 						}
+						
 					} else if(i instanceof Vaccine) {
 						sound3.play();
 						player.setState(2);
-						i.spawnNewItem(5000, 10000);
+						i.spawnNewItem(10000, 20000);
 						for(Item j : items) {
-							if(i != j) {
-								if(i.isOverlapping(j)) {
-									i.spawnNewItem(5000, 10000);
-								}
+							if(!i.equals(j)) {
+								while(i.isOverlapping(j)) i.spawnNewItem(10000, 20000);
 							}
 						}
 						
 					} else if(i instanceof Covid) {
-						
 						if(player.getState() != 2 && player.getState() != -1) {
 							sound1.play();
 							player.setState(0);
-							
-							
 						} 
-						
 					}
 				}
 				
 				if(i.x+i.width < 0) {
 					
 					if(i instanceof Mask) {
-						i.spawnNewItem(1000);
+						i.spawnNewItem(1500, 2500);
 						for(Item j : items) {
-							if(i != j) {
-								if(i.isOverlapping(j)) {
-									i.spawnNewItem(1000);
-								}
+							if(!i.equals(j)) {
+								while(i.isOverlapping(j)) i.spawnNewItem(1500, 2500);
 							}
 						}
+						
 					} else if(i instanceof Vaccine) {
-						i.spawnNewItem(5000, 10000);
+						i.spawnNewItem(10000, 20000);
 						for(Item j : items) {
-							if(i != j) {
-								if(i.isOverlapping(j)) {
-									i.spawnNewItem(5000, 10000);
-								}
+							if(!i.equals(j)) {
+								while(i.isOverlapping(j)) i.spawnNewItem(10000, 20000);
 							}
 						}
+						
 					} else if(i instanceof Covid) {
-						i.spawnNewItem(test.getRandomX(1600, 2000));
+						i.spawnNewItem(800, 1000);
 						for(Item j : items) {
-							if(i != j) {
-								if(i.isOverlapping(j)) {
-									i.spawnNewItem(test.getRandomX(1600, 2000));
-								}
+							if(!i.equals(j)) {
+								while(i.isOverlapping(j)) i.spawnNewItem(800, 1000);
 							}
 						}
 					}
@@ -216,14 +205,14 @@ public class DrawingSurface extends PApplet{
 			
 			for(Platform p : platforms) {
 				if(p.x+p.width < 0) {
-					p.moveToLocation(980, 400);
+					p.moveToLocation(970, 400);
 					
 				}
 			}
 			
 			if(player.getState() == 2 || player.getState() == -1) {
-				textSize(24);
-				fill(40, 200, 100);
+				textSize(36);
+				fill(0, 255, 0);
 				text(player.getCountdown(), 30, 200);
 			}
 			
@@ -251,7 +240,7 @@ public class DrawingSurface extends PApplet{
 		
 		i.add(new Mask(loadImage("media/mask.png"), test.getRandomX(2000, 3000), test.getRandomY(false), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
 		i.add(new Covid(loadImage("media/covid.png"), 2000, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
-		i.add(new Covid(loadImage("media/covid.png"), 2800, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
+		i.add(new Covid(loadImage("media/covid.png"), 2600, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
 		i.add(new Vaccine(loadImage("media/vaccine.png"), test.getRandomX(5000, 10000), test.getRandomY(false),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
 		
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
@@ -298,4 +287,5 @@ public class DrawingSurface extends PApplet{
 		player.setState(1);
 		
 	}
+	
 }
