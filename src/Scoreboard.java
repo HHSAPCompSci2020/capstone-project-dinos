@@ -63,14 +63,14 @@ public class Scoreboard {
 	}
 	
 	/**
-	 * Gets the score in a string format
-	 * @return score as a string
+	 * Gets the highscore in a string format
+	 * @return highscore as a string
 	 */
-	public String toString() {
+	public String getHighscoreDisplay() {
 		String hscore = String.valueOf(highscore);
 		String display = "HI ";
 	
-		for (int i = 0; i < 7 - hscore.length(); i++) {
+		for (int i = 0; i < 6 - hscore.length(); i++) {
 			display += "0";
 		}
 		display+=hscore;
@@ -78,13 +78,17 @@ public class Scoreboard {
 		return display;
 
 	}
-	public String displayD() {
+	
+	/**
+	 * Gets the score in a string format
+	 * @return score as a string
+	 */
+	public String getScoreDisplay() {
 		
 		String display = "";
-		
 		String dscore = String.valueOf(score);
 		
-		for (int i = 0; i < 7 - dscore.length(); i++) {
+		for (int i = 0; i < 6 - dscore.length(); i++) {
 			display += "0";
 		}
 		display += dscore;

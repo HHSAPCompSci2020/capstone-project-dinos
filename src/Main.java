@@ -12,6 +12,7 @@ public class Main extends JFrame{
 	private DrawingSurface game;
 	private CustomizePanel customize;
 	private EndPanel end;
+	private SettingsPanel settings;
 	
 	/**
 	 * Constructor for Main class
@@ -31,11 +32,13 @@ public class Main extends JFrame{
 	    menu = new OptionPanel(this);    
 	    customize = new CustomizePanel(this);
 	    end = new EndPanel(this);
+	    settings = new SettingsPanel(this);
 	    
 	    cardPanel.add(menu, "1");
 	    cardPanel.add(game, "2");
 	    cardPanel.add(customize, "3");
 	    cardPanel.add(end, "4");
+	    cardPanel.add(settings, "5");
 	    add(cardPanel);
 	    addKeyListener(game);
 	    

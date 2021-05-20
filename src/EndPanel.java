@@ -61,7 +61,7 @@ public class EndPanel extends JPanel implements ActionListener{
 
 		g.setFont(new Font("SansSerif",Font.BOLD,28));
 		g.setColor(Color.RED);
-		g2.drawString("GAME OVER", 310, 300);
+		g2.drawString("GAME OVER", 315, 300);
 		
 		message = "SCORE: " + d.getScoreboard().getHighscore();
 		int strWidth = g.getFontMetrics().stringWidth(message);

@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
@@ -17,7 +16,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private Main w;
 	private DrawingSurface d;
 	private JPanel p;
-	private JButton startButton, customizeButton;
+	private JButton startButton, customizeButton, settingsButton;
 	
 	
 	/**
@@ -37,10 +36,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 		customizeButton = new JButton("Customize your character");
 		customizeButton.addActionListener(this);
 		
-
+		settingsButton = new JButton("Settings");
+		settingsButton.addActionListener(this);
 		
 		p.add(startButton);
 		p.add(customizeButton);
+		p.add(settingsButton);
 		add(p);
 		w.add(this);
 		
@@ -87,8 +88,11 @@ public class OptionPanel extends JPanel implements ActionListener {
 			w.changePanel("2");
 			d.startGame();
 			
-		} if(e.getSource() == customizeButton) {
+		} else if(e.getSource() == customizeButton) {
 			w.changePanel("3");
+			
+		} else if(e.getSource() == settingsButton) {
+			w.changePanel("5");
 		}
 		
 		w.remove(this);
