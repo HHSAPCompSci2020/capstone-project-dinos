@@ -55,7 +55,7 @@ public class Item extends MovingImage{
 	 * Spawns a new item at a certain x location and a random y
 	 * @param x x coordinate of the new location
 	 */
-	public void spawn(int x, int y) {
+	public void spawn(int x) {
 		
 		if(this instanceof Covid)
 			moveToLocation(x, getRandomY(true));

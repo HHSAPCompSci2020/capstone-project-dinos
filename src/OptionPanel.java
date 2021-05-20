@@ -30,7 +30,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 		p = new JPanel();
 		setBackground(new Color(0, 180, 255));
 		p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
-		//p.add(Box.createVerticalStrut(500));
 		
 		startButton = new JButton("Start the game!");
 		startButton.addActionListener(this);
