@@ -19,6 +19,7 @@ public class DrawingSurface extends PApplet {
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
 
+	private Main main;
 	private Player player;
 	private String playerImage;
 	private Scoreboard sb;
@@ -26,18 +27,18 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Platform> platforms;
 	private ArrayList<Item> items;
 	private ArrayList<Covid> covid;
-	private EasySound sound;
-	private EasySound sound1;
-	private EasySound sound2;
-	private EasySound sound3;
+	private EasySound jumpSound;
+	private EasySound deathSound;
+	private EasySound maskSound;
+	private EasySound vaccineSound;
 	private Item test;
 
 	private int count;
 	private float weather;
 	private boolean cycle;
-	private float sunX;
-	private float sunY;
-	private float time;
+//	private float sunX;
+//	private float sunY;
+//	private float time;
 
 	/**
 	 * Constructor for DrawingSurface class
@@ -45,25 +46,27 @@ public class DrawingSurface extends PApplet {
 	 * @param w Main class
 	 */
 	public DrawingSurface(Main w) {
+		main = w;
 		keys = new ArrayList<Integer>();
 		platforms = new ArrayList<Platform>();
 		items = new ArrayList<Item>();
 		covid = new ArrayList<Covid>();
 		sb = new Scoreboard();
 		count = 0;
-		weather = 0;
-		cycle = true;
-		sunX = 0;
-		sunY = 0;
-		time = 0;
-		sound = new EasySound(new File("").getAbsolutePath() + "\\1.wav");
-		sound1 = new EasySound(new File("").getAbsolutePath() + "\\2.wav");
-		sound2 = new EasySound(new File("").getAbsolutePath() + "\\3.wav");
-		sound3 = new EasySound(new File("").getAbsolutePath() + "\\4.wav");
+		jumpSound = new EasySound(new File("").getAbsolutePath() + "\\media\\jumpSound.wav");
+		deathSound = new EasySound(new File("").getAbsolutePath() + "\\media\\deathSound.wav");
+		maskSound = new EasySound(new File("").getAbsolutePath() + "\\media\\maskSound.wav");
+		vaccineSound = new EasySound(new File("").getAbsolutePath() + "\\media\\vaccineSound.wav");
 
 		test = new Item(loadImage("media/mask.png"), 0, 0, 0, 0, 0, 0);
 		playerImage = "media/doctor.png";
 		addGameElements(items, covid, platforms);
+		
+		weather = 0;
+		cycle = true;
+//		sunX = 0;
+//		sunY = 0;
+//		time = 0;
 	}
 
 	/**
@@ -71,23 +74,7 @@ public class DrawingSurface extends PApplet {
 	 */
 	public void draw() {
 		background(52, 180f - weather, 235f - weather);
-		if (cycle == true) {
-			weather += 0.3;
-		}
-		if (weather >= 130) {
-			cycle = false;
-		}
-		if (cycle == false) {
-			weather -= 0.3;
-		}
-		if (weather <= 0) {
-			cycle = true;
-		}
-		time += 0.3;
-		sunX = 400f - (float) (350 * Math.cos(Math.PI * time / 130.0 + (Math.PI / 3)));
-		sunY = 400f - (float) (325 * Math.sin(Math.PI * time / 130.0 + (Math.PI / 3)));
-		fill(252, 223, 3);
-		ellipse(sunX, sunY, 50f, 50f);
+		
 		pushMatrix();
 		int width = getWidth();
 		int height = getHeight();
@@ -96,16 +83,8 @@ public class DrawingSurface extends PApplet {
 		float ratioY = (float) height / DRAWING_HEIGHT;
 
 		scale(ratioX, ratioY);
-
-		// OBJECT OUTLINES
-		fill(255);
-		for (Item i : items) {
-			rect((float) i.x, (float) i.y, (float) i.width, (float) i.height);
-		}
-		for (Covid c : covid) {
-			rect((float) c.x, (float) c.y, (float) c.width, (float) c.height);
-		}
-		rect((float) player.x, (float) player.y, (float) player.width, (float) player.height);
+		
+		drawOutlines();
 
 		// DRAWING OBJECTS
 		player.draw(this);
@@ -119,16 +98,36 @@ public class DrawingSurface extends PApplet {
 		// DISPLAYING SCORE
 		textSize(24);
 		fill(0, 0, 0);
-		text(sb.getScore(), 650, 30);
+		text(sb.toString(), 570, 30);
 
-		popMatrix();
 
 		if (player.getState() != 0 && player.getState() != 3) {
 
+			// BACKGROUND
+			if (cycle == true) {
+				weather += 0.1;
+			}
+			if (weather >= 130) {
+				cycle = false;
+			}
+			if (cycle == false) {
+				weather -= 0.1;
+			}
+			if (weather <= 0) {
+				cycle = true;
+			}
+			
+			// SUN
+//			time += 0.3;
+//			sunX = 400f - (float) (350 * Math.cos(Math.PI * time / 130.0 + (Math.PI / 3)));
+//			sunY = 400f - (float) (325 * Math.sin(Math.PI * time / 130.0 + (Math.PI / 3)));
+//			fill(252, 223, 3);
+//			ellipse(sunX, sunY, 50f, 50f);
+			
 			// PLAYER & ITEM MOVEMENT
 			if (isPressed(KeyEvent.VK_UP)) {
 				if (player.jump()) {
-					sound.play();
+					jumpSound.play();
 				}
 
 			} else if (isPressed(KeyEvent.VK_DOWN)) {
@@ -158,7 +157,7 @@ public class DrawingSurface extends PApplet {
 				if (i.intersects(player)) {
 
 					if (i instanceof Mask) {
-						sound2.play();
+						maskSound.play();
 						sb.add(sb.MASK_WORTH);
 						i.spawnNewItem(1500, 2500);
 						for (Item j : items) {
@@ -169,7 +168,7 @@ public class DrawingSurface extends PApplet {
 						}
 
 					} else if (i instanceof Vaccine) {
-						sound3.play();
+						vaccineSound.play();
 						player.setState(2);
 						i.spawnNewItem(10000, 20000);
 						for (Item j : items) {
@@ -208,7 +207,7 @@ public class DrawingSurface extends PApplet {
 
 				if (c.intersects(player)) {
 					if (player.getState() != 2 && player.getState() != -1) {
-						sound1.play();
+						deathSound.play();
 						player.setState(0);
 					}
 				}
@@ -218,7 +217,6 @@ public class DrawingSurface extends PApplet {
 					for (Covid j : covid) {
 						if (!c.equals(j)) {
 							while (c.isTooClose(j)) {
-								// System.out.println("hi");
 								c.spawnNewItem(1200, 1400);
 							}
 						}
@@ -232,11 +230,12 @@ public class DrawingSurface extends PApplet {
 
 				}
 			}
-			//vaccine and timer
+			
+			// VACCINE AND TIMER
 			if (player.getState() == 2 || player.getState() == -1) {
-				textSize(36);
+				textSize(24);
 				fill(0, 255, 0);
-				text("Vaccine: " + player.getCountdown(), 30, 35);
+				text("Immunity: " + player.getCountdown(), 10, 30);
 			}
 
 			sb.act(count);
@@ -245,38 +244,13 @@ public class DrawingSurface extends PApplet {
 
 		// GAME OVER TEXT
 		if (player.getState() == 0) {
-			textSize(24);
-			fill(210, 25, 55);
-			int strWidth = this.getFontMetrics(getFont()).stringWidth("GAME OVER   ");
-			text("GAME OVER   ", 400 - strWidth / 2, 200);
+			deathSequence();
+			resetGame();
 		}
+		
+		popMatrix();
 	}
-
-	/**
-	 * Adds the many items to the game in the start
-	 * 
-	 * @param i ArrayList of Items that the new items are added to
-	 * @param p ArrayList of Platforms that the new platforms are added to
-	 */
-	public void addGameElements(ArrayList<Item> i, ArrayList<Covid> c, ArrayList<Platform> p) {
-
-		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3,
-				System.currentTimeMillis());
-
-		i.add(new Mask(loadImage("media/mask.png"), test.getRandomX(2000, 3000), test.getRandomY(false),
-				Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
-		i.add(new Vaccine(loadImage("media/vaccine.png"), test.getRandomX(5000, 10000), test.getRandomY(false),
-				Vaccine.VACCINE_WIDTH, Vaccine.VACCINE_HEIGHT));
-
-		c.add(new Covid(loadImage("media/covid.png"), 2000, test.getRandomY(true), Covid.COVID_WIDTH,
-				Covid.COVID_HEIGHT));
-		c.add(new Covid(loadImage("media/covid.png"), 2600, test.getRandomY(true), Covid.COVID_WIDTH,
-				Covid.COVID_HEIGHT));
-
-		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
-		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));
-	}
-
+	
 	/**
 	 * Creates a new Player with the image of the file playerImage
 	 * 
@@ -317,8 +291,78 @@ public class DrawingSurface extends PApplet {
 	 * Begins the game
 	 */
 	public void startGame() {
+		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3,
+				System.currentTimeMillis());
 		player.setState(1);
+	}
+	
+	/**
+	 * Gets the Scoreboard object being used in DrawingSurface
+	 * @return Scoreboard object
+	 */
+	public Scoreboard getScoreboard() {
+		return sb;
+		
+	}
+	
+	private void resetGame() {
+		if(sb.getScore() > sb.getHighscore())
+			sb.setHighscore(sb.getScore());
+		sb.setScore(0);
+		items.clear();
+		covid.clear();
+		platforms.clear();
+		count = 0;
+		weather = 0;
+		cycle = true;
+		addGameElements(items, covid, platforms);
+	}
 
+	private void addGameElements(ArrayList<Item> i, ArrayList<Covid> c, ArrayList<Platform> p) {
+
+		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3,
+				System.currentTimeMillis());
+
+		i.add(new Mask(loadImage("media/mask.png"), test.getRandomX(2000, 3000), test.getRandomY(false),
+				Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
+		i.add(new Vaccine(loadImage("media/vaccine.png"), test.getRandomX(5000, 10000), test.getRandomY(false),
+				Vaccine.VACCINE_WIDTH, Vaccine.VACCINE_HEIGHT));
+
+		c.add(new Covid(loadImage("media/covid.png"), 2000, test.getRandomY(true), Covid.COVID_WIDTH,
+				Covid.COVID_HEIGHT));
+		c.add(new Covid(loadImage("media/covid.png"), 2600, test.getRandomY(true), Covid.COVID_WIDTH,
+				Covid.COVID_HEIGHT));
+
+		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
+		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));
+	}
+	
+	private void deathSequence() {	
+		
+		int num = 0;
+		while(num < 10000) {
+			textSize(24);
+			fill(210, 25, 55);
+			int strWidth = this.getFontMetrics(getFont()).stringWidth("GAME OVER   ");
+			text("GAME OVER   ", 400 - strWidth / 2, 200);
+			num++;
+		}
+		
+		main.changePanel("4");
+		
+	}
+
+	private void drawOutlines() {
+		
+		fill(255);
+		for (Item i : items) {
+			rect((float) i.x, (float) i.y, (float) i.width, (float) i.height);
+		}
+		for (Covid c : covid) {
+			rect((float) c.x, (float) c.y, (float) c.width, (float) c.height);
+		}
+		rect((float) player.x, (float) player.y, (float) player.width, (float) player.height);
+		
 	}
 
 }

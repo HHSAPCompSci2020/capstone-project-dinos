@@ -8,9 +8,10 @@ import java.awt.*;
 public class Main extends JFrame{
 
 	private JPanel cardPanel;
-	private OptionPanel panel1;
-	private DrawingSurface panel2;
-	private CustomizePanel panel3;
+	private OptionPanel menu;
+	private DrawingSurface game;
+	private CustomizePanel customize;
+	private EndPanel end;
 	
 	/**
 	 * Constructor for Main class
@@ -25,16 +26,18 @@ public class Main extends JFrame{
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
 	    
-	    panel2 = new DrawingSurface(this);
-	    panel1 = new OptionPanel(this);    
-	    panel3 = new CustomizePanel(this);
-	    panel2.init();
+	    game = new DrawingSurface(this);
+	    game.init();
+	    menu = new OptionPanel(this);    
+	    customize = new CustomizePanel(this);
+	    end = new EndPanel(this);
 	    
-	    cardPanel.add(panel1, "1");
-	    cardPanel.add(panel2, "2");
-	    cardPanel.add(panel3, "3");
+	    cardPanel.add(menu, "1");
+	    cardPanel.add(game, "2");
+	    cardPanel.add(customize, "3");
+	    cardPanel.add(end, "4");
 	    add(cardPanel);
-	    addKeyListener(panel2);
+	    addKeyListener(game);
 	    
 	    setVisible(true);
 	}
@@ -46,7 +49,7 @@ public class Main extends JFrame{
 	public static void main(String[] args) {
 		Main main = new Main("CovidRun");
 		System.out.println("This is our Capstone Project");
-		System.out.println("Made by: Isaac Phoon, Clarence Choy, Yukai Qiu");
+		System.out.println("Made by: Clarence Choy, Isaac Phoon, Yukai Qiu");
 	}
 	
 	/**
@@ -54,7 +57,7 @@ public class Main extends JFrame{
 	 * @return DrawingSurface that Main has
 	 */
 	public DrawingSurface getDrawingSurface() {
-		return panel2;
+		return game;
 		
 	}
 
@@ -62,7 +65,7 @@ public class Main extends JFrame{
 	 * Changes the panel shown
 	 */
 	public void changePanel(String name) {
-		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
+		((CardLayout)cardPanel.getLayout()).show(cardPanel, name);
 		requestFocus();
 		
 		
