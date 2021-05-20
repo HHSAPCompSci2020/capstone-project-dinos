@@ -25,7 +25,7 @@ public class Player extends MovingImage {
 	private double gravity;
 	private double jumpStrength;
 	private int state; // 0 = Dead 1 = Alive -1 or 2 = Invincible 3 = Game Has Not Started
-	private int countdown;
+	private int countdown; // Time left for vaccine immunity
 	private long start;
 
 	/**

@@ -13,10 +13,11 @@ public class EasySound implements Runnable
     private SourceDataLine line = null;
     private byte[] audioBytes;
     private int numBytes;
+    private File soundFile;
 
     //Constructor
     public EasySound(String fileName) {
-        File  soundFile = new File(fileName);
+        soundFile = new File(fileName);
         AudioInputStream audioInputStream = null;
         try
         {
