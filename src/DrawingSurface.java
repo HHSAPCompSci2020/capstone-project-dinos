@@ -98,7 +98,10 @@ public class DrawingSurface extends PApplet{
 			
 			// PLAYER & ITEM MOVEMENT
 			if (isPressed(KeyEvent.VK_UP)) {
-				player.jump(); 
+				if(player.jump()==true) {
+					sound.play();
+				}
+				
 			} else if(isPressed(KeyEvent.VK_DOWN)) {
 				player.duck();
 				if(player.height == Player.PLAYER_HEIGHT) 
@@ -145,9 +148,9 @@ public class DrawingSurface extends PApplet{
 						}
 						
 					} else if(i instanceof Covid) {
-						sound1.play();
+						
 						if(player.getState() != 2 && player.getState() != -1) {
-							
+							sound1.play();
 							player.setState(0);
 							
 							
