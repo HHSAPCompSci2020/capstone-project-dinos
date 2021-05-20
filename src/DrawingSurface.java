@@ -33,6 +33,9 @@ public class DrawingSurface extends PApplet{
 	private int count;
 	private float weather;
 	private boolean cycle;
+	private float sunX;
+	private float sunY;
+	private float time;
 	/**
 	 * Constructor for DrawingSurface class
 	 * @param w Main class
@@ -45,7 +48,9 @@ public class DrawingSurface extends PApplet{
 		count = 0;
 		weather = 0;
 		cycle = true;
-		
+		sunX = 0;
+		sunY = 0;
+		time = 0;
 		sound = new EasySound(new File("").getAbsolutePath() + "\\1.wav");
 		sound1 = new EasySound(new File("").getAbsolutePath() + "\\2.wav");
 		sound2 = new EasySound(new File("").getAbsolutePath() + "\\3.wav");
@@ -64,18 +69,21 @@ public class DrawingSurface extends PApplet{
 		if(cycle == true) {
 			weather += 0.3;
 		}
-		if(weather == 130) {
+		if(weather >= 130) {
 			cycle = false;
 		}
 		if(cycle == false) {
 			weather -= 0.3;
 		}
-		if(weather == 0) {
+		if(weather <= 0) {
 			cycle = true;
 		}
-		
+		time += 0.3;
+		sunX = 400f - (float)(350 * Math.cos(Math.PI * time/130.0 + (Math.PI/3)));
+	    sunY = 400f - (float)(325 * Math.sin(Math.PI * time/130.0 + (Math.PI/3)));
+	    fill(252, 223, 3);
+	    ellipse(sunX, sunY, 50f, 50f);
 		pushMatrix();
-
 		int width = getWidth();
 		int height = getHeight();
 
