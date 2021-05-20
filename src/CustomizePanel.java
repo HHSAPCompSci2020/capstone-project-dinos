@@ -48,7 +48,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		docImage = Toolkit.getDefaultToolkit().getImage("media/doctor.png");
 		dinoImage = Toolkit.getDefaultToolkit().getImage("media/dinosaur.png");
 		
-		message = "Customize your character!";
+		message = "Customize your character! Click the tag above to select!";
 		
 		p.add(doctor);
 		p.add(dinosaur);

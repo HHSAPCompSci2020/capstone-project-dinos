@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 
@@ -17,6 +19,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private JPanel p;
 	private JButton startButton, customizeButton;
 	private String message1, message2, message3;
+	private Image docImage;
 	
 	/**
 	 * Constructor for OptionPanel
@@ -40,6 +43,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		message2 = "while also collecting masks for bonus points and vaccines for a few seconds of invincibility.";
 		message3 = "Press the up arrow key to jump and the down arrow key to duck.";
 		
+		docImage = Toolkit.getDefaultToolkit().getImage("media/doctor.png");
 		p.add(startButton);
 		p.add(customizeButton);
 		add(p);
@@ -68,7 +72,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		g.drawString(message3, 40, 500);
 
 		g2.setTransform(at);
-
+		g2.drawImage(docImage, 335, 100, 120, 200, this);
 		
 	}
 	
