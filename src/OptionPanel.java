@@ -18,8 +18,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private DrawingSurface d;
 	private JPanel p;
 	private JButton startButton, customizeButton;
-	private String message1, message2, message3;
-	private Image docImage;
+	
 	
 	/**
 	 * Constructor for OptionPanel
@@ -31,6 +30,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		p = new JPanel();
 		setBackground(new Color(0, 180, 255));
 		p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
+		//p.add(Box.createVerticalStrut(500));
 		
 		startButton = new JButton("Start the game!");
 		startButton.addActionListener(this);
@@ -38,11 +38,8 @@ public class OptionPanel extends JPanel implements ActionListener {
 		customizeButton = new JButton("Customize your character");
 		customizeButton.addActionListener(this);
 		
-		message1 = "Instructions: Control a character by jumping and ducking to avoid Coronavirus particles";
-		message2 = "while also collecting masks for bonus points and vaccines for a few seconds of invincibility.";
-		message3 = "Press the up arrow key to jump and the down arrow key to duck.";
+
 		
-		docImage = Toolkit.getDefaultToolkit().getImage("media/doctor.png");
 		p.add(startButton);
 		p.add(customizeButton);
 		add(p);
@@ -65,14 +62,24 @@ public class OptionPanel extends JPanel implements ActionListener {
 		g2.scale(ratioX, ratioY);
 
 		g.setColor(Color.BLACK);
-		g.setFont(new Font("SansSerif",Font.BOLD,17));
-		g.drawString(message1, 40, 400);
-		g.drawString(message2, 40, 450);
-		g.drawString(message3, 40, 500);
 
-		g2.setTransform(at);
-		g2.drawImage(docImage, 335, 100, 120, 200, this);
+		g.setFont(new Font("SansSerif",Font.BOLD,30));
+		g.drawString("Item Description", 65, 70);
+		g.drawString("Controls", 600, 100);
+		g.setFont(new Font("SansSerif",Font.BOLD,17));
+		g.drawString("Covid: Bad! Hit it and you will die!", 50, 160);
+		g.drawString("Mask: Take and receive 30 Points!", 52, 250);
+		g.drawString("Vaccine: Immunity for 5 seconds!", 54, 360);
+		g.setFont(new Font("SansSerif",Font.BOLD,25));
+		g.drawString("Jump", 700, 185);
+		g.drawString("Duck", 700, 250);
 		
+		g2.setTransform(at);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 335, 100, 120, 200, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/covid.png"), 100, 80, 50, 50, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/mask.png"),100,170,50,50,this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/vaccine.png"), 100,270,50,50,this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/keys.png"), 600,100,60,200,this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
