@@ -29,6 +29,7 @@ public class DrawingSurface extends PApplet{
 	private ArrayList<Integer> keys;
 	private ArrayList<Platform> platforms;
 	private ArrayList<Item> items;
+	private Item test;
 	
 	private int count;
 	
@@ -47,6 +48,8 @@ public class DrawingSurface extends PApplet{
 		sound1 = new EasySound(new File("").getAbsolutePath() + "\\2.wav");
 		sound2 = new EasySound(new File("").getAbsolutePath() + "\\3.wav");
 		sound3 = new EasySound(new File("").getAbsolutePath() + "\\4.wav");
+		
+		test = new Item(loadImage("media/mask.png"), 0, 0, 0, 0, 0, 0);
 		playerImage = "media/doctor.png";
 		addGameElements(items, platforms);
 	}
@@ -55,7 +58,7 @@ public class DrawingSurface extends PApplet{
 	 * Draw method that is responsible for all of the changes on screen
 	 */
 	public void draw() {
-		background(0, 255, 255);
+		background(0, 180, 255);
 		
 		pushMatrix();
 
@@ -174,11 +177,11 @@ public class DrawingSurface extends PApplet{
 							}
 						}
 					} else if(i instanceof Covid) {
-						i.spawnNewItem(Item.getRandomX(1600, 2000));
+						i.spawnNewItem(test.getRandomX(1600, 2000));
 						for(Item j : items) {
 							if(i != j) {
 								if(i.isOverlapping(j)) {
-									i.spawnNewItem(Item.getRandomX(1600, 2000));
+									i.spawnNewItem(test.getRandomX(1600, 2000));
 								}
 							}
 						}
@@ -221,10 +224,10 @@ public class DrawingSurface extends PApplet{
 		
 		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3);
 		
-		i.add(new Mask(loadImage("media/mask.png"), Mask.getRandomX(2000, 3000), Mask.getRandomY(), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
-		i.add(new Covid(loadImage("media/covid.png"), 2000, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
-		i.add(new Covid(loadImage("media/covid.png"), 2800, Covid.getRandomY(), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
-		i.add(new Vaccine(loadImage("media/vaccine.png"), Vaccine.getRandomX(5000, 10000), Vaccine.getRandomY(),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
+		i.add(new Mask(loadImage("media/mask.png"), test.getRandomX(2000, 3000), test.getRandomY(false), Mask.MASK_WIDTH, Mask.MASK_HEIGHT));
+		i.add(new Covid(loadImage("media/covid.png"), 2000, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
+		i.add(new Covid(loadImage("media/covid.png"), 2800, test.getRandomY(true), Covid.COVID_WIDTH, Covid.COVID_HEIGHT));
+		i.add(new Vaccine(loadImage("media/vaccine.png"), test.getRandomX(5000, 10000), test.getRandomY(false),Vaccine.VACCINE_WIDTH,Vaccine.VACCINE_HEIGHT));
 		
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));

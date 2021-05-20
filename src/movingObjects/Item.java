@@ -15,6 +15,7 @@ public class Item extends MovingImage{
 	private double multiplier;
 	
 	private static ArrayList<Integer> yValues = new ArrayList<Integer>(Arrays.asList(140, 260, 320));
+	private static ArrayList<Integer> covidYValues = new ArrayList<Integer>(Arrays.asList(140, 260, 320, 320, 320, 320));
 	
 	/**
 	 * Constructor for Item Class
@@ -56,7 +57,10 @@ public class Item extends MovingImage{
 	 */
 	public void spawn(int x, int y) {
 		
-		moveToLocation(x, getRandomY());
+		if(this instanceof Covid)
+			moveToLocation(x, getRandomY(true));
+		
+		moveToLocation(x, getRandomY(false));
 		
 	}
 	
@@ -67,7 +71,10 @@ public class Item extends MovingImage{
 	 */
 	public void spawnNewItem(int x) {
 		
-		moveToLocation(x, getRandomY());
+		if(this instanceof Covid)
+			moveToLocation(x, getRandomY(true));
+		
+		moveToLocation(x, getRandomY(false));
 		
 	}
 	
@@ -78,18 +85,26 @@ public class Item extends MovingImage{
 	 */
 	public void spawnNewItem(int minX, int maxX) {
 		
-		moveToLocation(getRandomX(minX, maxX), getRandomY());
+		if(this instanceof Covid)
+			moveToLocation(getRandomX(minX, maxX), getRandomY(true));
 		
+		moveToLocation(getRandomX(minX, maxX), getRandomY(false));
 	}
 	
 	/**
 	 * Chooses a random y value from an array list of set y values
+	 * @param isCovid covid class or not
 	 * @return random y coordinate value
 	 */
-	public static int getRandomY() {
+	public int getRandomY(boolean isCovid) {
 		
-		int n = (int) (Math.random() * yValues.size());
-		return yValues.get(n);
+		if(isCovid) {
+			int n = (int) (Math.random() * covidYValues.size());
+			return covidYValues.get(n);
+		} else {
+			int n = (int) (Math.random() * yValues.size());
+			return yValues.get(n);
+		}
 		
 	}
 	
@@ -99,27 +114,23 @@ public class Item extends MovingImage{
 	 * @param maxX maximum x value
 	 * @return random integer between the minimum and the maximum inclusive
 	 */
-	public static int getRandomX(int minX, int maxX) {
+	public int getRandomX(int minX, int maxX) {
 		
 		int n = (int) (Math.random() * (maxX-minX+1));
 		return minX + n;
 		
 	}
 	/**
-	 * Chooses a random x value from a minimum and maximum
+	 * Checks if this Item is overlapping with another
 	 * @param check the Item that it is checking for overlap with
-	 * @return If the items are overlapping
+	 * @return if the items are overlapping
 	 */
 	public boolean isOverlapping(Item check) {
-		if (getX() >= check.x + check.getWidth() || check.x >= getX() + getWidth()) {
-            return false;
-        }
+		
+		if(this.intersects(check))
+			return true;
  
-        if (getY() >= check.y + check.getHeight() || check.y >= getY() + getHeight()) {
-            return false;
-        }
- 
-		return true;
+		return false;
 		
 	}
 	
