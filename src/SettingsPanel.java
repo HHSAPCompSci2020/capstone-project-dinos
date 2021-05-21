@@ -81,7 +81,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
 //		if(w.getDrawingSurface().getDrawHitboxes()) g.drawString("Hitboxes: ON", 470, 50);
 //		else g.drawString("Hitboxes: OFF", 470, 50);
 		
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/buildingBackgrounw.getDrawingSurface().png"), 110, 80, 180, 120, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/buildingBackground.png"), 110, 80, 180, 120, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dayAndNight.png"), 320, 80, 100, 100, this);
 		g2.setColor(Color.WHITE);
 		g2.fillRect(470, 80, 80, 135);
