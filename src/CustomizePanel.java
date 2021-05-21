@@ -19,7 +19,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 	private JButton exit;
 	
 	private String message;
-	
+
 	
 	/**
 	 * Constructor for CustomizePanel
@@ -38,7 +38,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		
 		exit = new JButton("Back to Menu");
 		exit.addActionListener(this);
-		
+
 		message = "Customize your character! Click the tag above to select!";
 		
 		p.add(doctor);
@@ -67,6 +67,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		g.setFont(new Font("SansSerif",Font.BOLD,28));
 		int strWidth = g.getFontMetrics().stringWidth(message);
 		g.drawString(message, 400-strWidth/2, 300);
+
 		
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 270, 100, 60, 100, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dinosaur.png"), 350, 100, 60, 90, this);
