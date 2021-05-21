@@ -14,8 +14,8 @@ import processing.core.PImage;
 public class Player extends MovingImage {
 
 	/**
-	 * PLAYER_WIDTH is the width of the player on the screen PLAYER_HEIGHT is the
-	 * height of the player on the screen
+	 * PLAYER_WIDTH is the width of the player on the screen 
+	 * PLAYER_HEIGHT is the height of the player on the screen
 	 */
 	public static final int PLAYER_WIDTH = 60;
 	public static final int PLAYER_HEIGHT = 100;
@@ -30,7 +30,6 @@ public class Player extends MovingImage {
 
 	/**
 	 * Constructor for Player class
-	 * 
 	 * @param img image file for what Player looks like
 	 * @param x   top left x coordinate of Player
 	 * @param y   top left y coordinate of Player

@@ -9,14 +9,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Toolkit;
 
 public class SettingsPanel extends JPanel implements ActionListener{
 
 	private Main w;
-	private DrawingSurface d;
-	
 	private JPanel p;
 	private JButton exit, buildings, timeOfDay, hitboxes;
 	
@@ -29,7 +26,6 @@ public class SettingsPanel extends JPanel implements ActionListener{
 	 */
 	public SettingsPanel(Main w) {
 		this.w = w;
-		d = w.getDrawingSurface();
 		p = new JPanel();
 		setBackground(new Color(255, 200, 60));
 		p.setLayout(new BoxLayout(p, BoxLayout.X_AXIS));
@@ -56,7 +52,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
 		w.add(this);
 	}
 	
-	
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
 
@@ -78,14 +74,14 @@ public class SettingsPanel extends JPanel implements ActionListener{
 		g.drawString(message, 400-strWidth/2, 350);
 		
 //		g.setFont(new Font("SansSerif",Font.PLAIN,14));
-//		if(d.getDrawBuildings()) g.drawString("Buildings: ON", 160, 50);
+//		if(w.getDrawingSurface().getDrawBuildings()) g.drawString("Buildings: ON", 160, 50);
 //		else g.drawString("Buildings: OFF", 110, 50);
-//		if(d.getDrawNightAndDay()) g.drawString("Night & Day: ON", 330, 50);
+//		if(w.getDrawingSurface().getDrawNightAndDay()) g.drawString("Night & Day: ON", 330, 50);
 //		else g.drawString("Night & Day: OFF", 320, 50);
-//		if(d.getDrawHitboxes()) g.drawString("Hitboxes: ON", 470, 50);
+//		if(w.getDrawingSurface().getDrawHitboxes()) g.drawString("Hitboxes: ON", 470, 50);
 //		else g.drawString("Hitboxes: OFF", 470, 50);
 		
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/buildingBackground.png"), 110, 80, 180, 120, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/buildingBackgrounw.getDrawingSurface().png"), 110, 80, 180, 120, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dayAndNight.png"), 320, 80, 100, 100, this);
 		g2.setColor(Color.WHITE);
 		g2.fillRect(470, 80, 80, 135);
@@ -101,18 +97,18 @@ public class SettingsPanel extends JPanel implements ActionListener{
 			w.changePanel("1");
 			
 		} else if(e.getSource() == buildings) {
-			d.setSettings(!d.getDrawBuildings(), d.getDrawNightAndDay(), d.getDrawHitboxes());
-			if(d.getDrawBuildings()) System.out.println("Buildings: ON");
+			w.getDrawingSurface().setSettings(!w.getDrawingSurface().getDrawBuildings(), w.getDrawingSurface().getDrawNightAndDay(), w.getDrawingSurface().getDrawHitboxes());
+			if(w.getDrawingSurface().getDrawBuildings()) System.out.println("Buildings: ON");
 			else System.out.println("Buildings: OFF");
 			
 		} else if(e.getSource() == timeOfDay) {
-			d.setSettings(d.getDrawBuildings(), !d.getDrawNightAndDay(), d.getDrawHitboxes());
-			if(d.getDrawNightAndDay()) System.out.println("Night & Day: ON");
+			w.getDrawingSurface().setSettings(w.getDrawingSurface().getDrawBuildings(), !w.getDrawingSurface().getDrawNightAndDay(), w.getDrawingSurface().getDrawHitboxes());
+			if(w.getDrawingSurface().getDrawNightAndDay()) System.out.println("Night & Day: ON");
 			else System.out.println("Night & Day: OFF");
 			
 		} else if(e.getSource() == hitboxes) {
-			d.setSettings(d.getDrawBuildings(), d.getDrawNightAndDay(), !d.getDrawHitboxes());
-			if(d.getDrawHitboxes()) System.out.println("Hitboxes: ON");
+			w.getDrawingSurface().setSettings(w.getDrawingSurface().getDrawBuildings(), w.getDrawingSurface().getDrawNightAndDay(), !w.getDrawingSurface().getDrawHitboxes());
+			if(w.getDrawingSurface().getDrawHitboxes()) System.out.println("Hitboxes: ON");
 			else System.out.println("Hitboxes: OFF");
 		}
 	}

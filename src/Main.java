@@ -66,6 +66,7 @@ public class Main extends JFrame{
 
 	/**
 	 * Changes the panel shown
+	 * @param name the name of the panel
 	 */
 	public void changePanel(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel, name);

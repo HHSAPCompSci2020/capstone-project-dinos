@@ -1,9 +1,7 @@
-
 /**
  * DrawingSurface class where all of the objects are instantiated and methods are called
  * @author Clarence Choy
  */
-
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
@@ -13,8 +11,8 @@ import processing.core.PApplet;
 public class DrawingSurface extends PApplet {
 
 	/**
-	 * DRAWING_WIDTH is the width of the drawing window DRAWING_HEIGHT is the height
-	 * of the drawing window
+	 * DRAWING_WIDTH is the width of the drawing window 
+	 * DRAWING_HEIGHT is the height of the drawing window
 	 */
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -44,7 +42,6 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Constructor for DrawingSurface class
-	 * 
 	 * @param w Main class
 	 */
 	public DrawingSurface(Main w) {
@@ -75,9 +72,7 @@ public class DrawingSurface extends PApplet {
 //		time = 0;
 	}
 
-	/**
-	 * Draw method that is responsible for all of the changes on screen
-	 */
+	@Override
 	public void draw() {
 		
 		if(drawNightAndDay) {
@@ -281,7 +276,6 @@ public class DrawingSurface extends PApplet {
 	
 	/**
 	 * Creates a new Player with the image of the file playerImage
-	 * 
 	 * @param playerImage file of the image you want the player to change to
 	 */
 	public void changePlayer(String playerImage) {
@@ -307,7 +301,6 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Checks if a certain key is pressed
-	 * 
 	 * @param code key code of the key you want to check
 	 * @return true if the key is pressed and false otherwise
 	 */
@@ -333,6 +326,12 @@ public class DrawingSurface extends PApplet {
 		
 	}
 	
+	/**
+	 * Change the settings of the game
+	 * @param buildings if background buildings will be drawn or not
+	 * @param nightAndDay if the time of day will change or not
+	 * @param hitboxes if hitboxes will be drawn or not
+	 */
 	public void setSettings(boolean buildings, boolean nightAndDay, boolean hitboxes) {
 		drawBuildings = buildings;
 		drawNightAndDay = nightAndDay;
@@ -340,16 +339,28 @@ public class DrawingSurface extends PApplet {
 		
 	}
 	
+	/**
+	 * Gets the variable that determines if the background buildings are drawn or not
+	 * @return true if the buildings will be drawn and false if not
+	 */
 	public boolean getDrawBuildings() {
 		return drawBuildings;
 		
 	}
 	
+	/**
+	 * Gets the variable that determines if the time of day will alter between day and night
+	 * @return true if time of day will change and false if not
+	 */
 	public boolean getDrawNightAndDay() {
 		return drawNightAndDay;
 		
 	}
 	
+	/**
+	 * Gets the variable that determines if the hitboxes are drawn or not
+	 * @return true if hitboxes will be drawn and false if not
+	 */
 	public boolean getDrawHitboxes() {
 		return drawHitboxes;
 		

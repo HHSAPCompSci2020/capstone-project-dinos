@@ -96,11 +96,19 @@ public class Scoreboard {
 		return display;
 	}
 	
+	/**
+	 * Sets the highscore
+	 * @param score score that you want to set highscore to
+	 */
 	public void setHighscore(int score) {
 		highscore = score;
 		
 	}
 	
+	/**
+	 * Gets the highscore
+	 * @return highscore
+	 */
 	public int getHighscore() {
 		return highscore;
 		

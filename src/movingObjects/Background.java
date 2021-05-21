@@ -1,3 +1,7 @@
+/**
+ * Represents any background images/objects moving in the background that do not directly affect the game
+ * @author Clarence Choy
+ */
 package movingObjects;
 
 import processing.core.PImage;

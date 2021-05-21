@@ -14,8 +14,6 @@ import java.awt.Toolkit;
 public class CustomizePanel extends JPanel implements ActionListener{
 
 	private Main w;
-	private DrawingSurface d;
-	
 	private JPanel p;
 	private JButton doctor, dinosaur;
 	private JButton exit;
@@ -29,7 +27,6 @@ public class CustomizePanel extends JPanel implements ActionListener{
 	 */
 	public CustomizePanel(Main w) {
 		this.w = w;
-		d = w.getDrawingSurface();
 		p = new JPanel();
 		setBackground(new Color(75, 200, 50));
 		p.setLayout(new BoxLayout(p, BoxLayout.X_AXIS));
@@ -51,7 +48,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		w.add(this);
 	}
 	
-	
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
 
@@ -81,11 +78,11 @@ public class CustomizePanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == doctor) {
-			d.changePlayer("media/doctor.png");
+			w.getDrawingSurface().changePlayer("media/doctor.png");
 			System.out.println("Your character is now a doctor");
 		} 
 		if(e.getSource() == dinosaur) {
-			d.changePlayer("media/dinosaur.png");
+			w.getDrawingSurface().changePlayer("media/dinosaur.png");
 			System.out.println("Your character is now a dinosaur");
 		}
 		if(e.getSource() == exit) {

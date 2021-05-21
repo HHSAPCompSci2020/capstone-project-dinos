@@ -1,11 +1,8 @@
 /**
  * Represents the covid particles and is a subclass of Item
- * @author 
+ * @author Isaac Phoon
  */
 package movingObjects;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import processing.core.PImage;
 
@@ -17,8 +14,6 @@ public class Covid extends Item{
 	 */
 	public static final int COVID_WIDTH = 60;
 	public static final int COVID_HEIGHT = 60;
-	
-	private static ArrayList<Integer> yValues = new ArrayList<Integer>(Arrays.asList(140, 260, 320, 320, 320, 320));
 
 	/**
 	 * Constructor for Covid class

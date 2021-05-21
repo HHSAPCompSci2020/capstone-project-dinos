@@ -9,14 +9,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 public class EndPanel extends JPanel implements ActionListener{
 
 	private Main w;
-	private DrawingSurface d;
-	
 	private JPanel p;
 	private JButton exit;
 	
@@ -29,7 +25,6 @@ public class EndPanel extends JPanel implements ActionListener{
 	 */
 	public EndPanel(Main w) {
 		this.w = w;
-		d = w.getDrawingSurface();
 		p = new JPanel();
 		setBackground(new Color(175, 175, 175));
 		p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
@@ -44,7 +39,7 @@ public class EndPanel extends JPanel implements ActionListener{
 		w.add(this);
 	}
 	
-	
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
 
@@ -63,7 +58,7 @@ public class EndPanel extends JPanel implements ActionListener{
 		g.setColor(Color.RED);
 		g2.drawString("GAME OVER", 315, 300);
 		
-		message = "SCORE: " + d.getScoreboard().getHighscore();
+		message = "SCORE: " + w.getDrawingSurface().getScoreboard().getHighscore();
 		int strWidth = g.getFontMetrics().stringWidth(message);
 		g.drawString(message, 400-strWidth/2, 350);
 		

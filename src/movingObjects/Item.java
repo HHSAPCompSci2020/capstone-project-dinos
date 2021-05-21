@@ -41,14 +41,11 @@ public class Item extends MovingImage{
 		double xCoord = x+speed;
 		moveToLocation(xCoord, y);
 		
-		
 		if (count % 10 == 0) {
 			multiplier += 0.00001;
 			speed -= multiplier;
 					
 		} 
-		
-		
 	}
 	
 	/**

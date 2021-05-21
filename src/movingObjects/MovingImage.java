@@ -1,5 +1,5 @@
 /**
- * Represnts a moving image
+ * Represents a moving image
  * @author Shelby
  */
 package movingObjects;
