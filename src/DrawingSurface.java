@@ -27,6 +27,7 @@ public class DrawingSurface extends PApplet {
 	private ArrayList<Platform> platforms;
 	private ArrayList<Item> items;
 	private ArrayList<Covid> covid;
+	private ArrayList<Background> background;
 	private EasySound jumpSound;
 	private EasySound deathSound;
 	private EasySound maskSound;
@@ -36,6 +37,7 @@ public class DrawingSurface extends PApplet {
 	private int count;
 	private float weather;
 	private boolean cycle;
+	private boolean drawBuildings, drawNightAndDay, drawHitboxes;
 //	private float sunX;
 //	private float sunY;
 //	private float time;
@@ -51,6 +53,7 @@ public class DrawingSurface extends PApplet {
 		platforms = new ArrayList<Platform>();
 		items = new ArrayList<Item>();
 		covid = new ArrayList<Covid>();
+		background = new ArrayList<Background>();
 		sb = new Scoreboard();
 		count = 0;
 		jumpSound = new EasySound(new File("").getAbsolutePath() + "\\media\\jumpSound.wav");
@@ -60,10 +63,13 @@ public class DrawingSurface extends PApplet {
 
 		test = new Item(loadImage("media/mask.png"), 0, 0, 0, 0, 0, 0);
 		playerImage = "media/doctor.png";
-		addGameElements(items, covid, platforms);
+		addGameElements(items, covid, platforms, background);
 		
 		weather = 0;
 		cycle = true;
+		drawBuildings = true;
+		drawNightAndDay = true;
+		drawHitboxes = false;
 //		sunX = 0;
 //		sunY = 0;
 //		time = 0;
@@ -73,38 +79,11 @@ public class DrawingSurface extends PApplet {
 	 * Draw method that is responsible for all of the changes on screen
 	 */
 	public void draw() {
-		background(52, 180f - weather, 235f - weather);
 		
-		pushMatrix();
-		int width = getWidth();
-		int height = getHeight();
-
-		float ratioX = (float) width / DRAWING_WIDTH;
-		float ratioY = (float) height / DRAWING_HEIGHT;
-
-		scale(ratioX, ratioY);
-		
-		drawOutlines();
-
-		// DRAWING OBJECTS
-		player.draw(this);
-		for (Item i : items)
-			i.draw(this);
-		for (Covid c : covid)
-			c.draw(this);
-		for (Platform p : platforms)
-			p.draw(this);
-
-		// DISPLAYING SCORE
-		textSize(24);
-		fill(0, 0, 0);
-		text(sb.displayD(),700, 50);
-		text(sb.toString(), 669, 20);
-
-
-		if (player.getState() != 0 && player.getState() != 3) {
-
-			// BACKGROUND
+		if(drawNightAndDay) {
+			// NIGHT AND DAY
+			background(52, 180f - weather, 235f - weather);
+			
 			if (cycle == true) {
 				weather += 0.1;
 			}
@@ -117,6 +96,43 @@ public class DrawingSurface extends PApplet {
 			if (weather <= 0) {
 				cycle = true;
 			}
+		} else {
+			background(0, 180, 255);
+		}
+		
+		pushMatrix();
+		int width = getWidth();
+		int height = getHeight();
+
+		float ratioX = (float) width / DRAWING_WIDTH;
+		float ratioY = (float) height / DRAWING_HEIGHT;
+
+		scale(ratioX, ratioY);
+
+		// DRAWING OBJECTS
+		if(drawBuildings) {
+			for (Background b : background)
+				b.draw(this);
+		} 
+		if(drawHitboxes) drawHitboxes();
+		player.draw(this);
+		for (Item i : items)
+			i.draw(this);
+		for (Covid c : covid)
+			c.draw(this);
+		for (Platform p : platforms)
+			p.draw(this);
+		
+		
+
+		// DISPLAYING SCORE
+		textSize(24);
+		fill(0, 0, 0);
+		text(sb.getHighscoreDisplay(), 550, 30);
+		text(sb.getScoreDisplay(), 700, 30);
+
+
+		if (player.getState() != 0 && player.getState() != 3) {
 			
 			// SUN
 //			time += 0.3;
@@ -152,8 +168,11 @@ public class DrawingSurface extends PApplet {
 				c.act(count);
 			for (Platform p : platforms)
 				p.act(count);
+			for (Background b : background)
+				b.act(count);
 
 			// COLLISION DETECTION
+			// ITEM ARRAYLIST
 			for (Item i : items) {
 				if (i.intersects(player)) {
 
@@ -204,11 +223,11 @@ public class DrawingSurface extends PApplet {
 				}
 			}
 
+			// COVID ARRAYLIST
 			for (Covid c : covid) {
 
 				if (c.intersects(player)) {
 					if (player.getState() != 2 && player.getState() != -1) {
-						deathSound.play();
 						player.setState(0);
 					}
 				}
@@ -225,10 +244,18 @@ public class DrawingSurface extends PApplet {
 				}
 			}
 
+			// PLATFORM ARRAYLIST
 			for (Platform p : platforms) {
 				if (p.x + p.width < 0) {
 					p.moveToLocation(970, 400);
 
+				}
+			}
+			
+			// BACKGROUND ARRAYLIST
+			for (Background b : background) {
+				if(b.x + b.width < 0) {
+					b.moveToLocation(800, 0);
 				}
 			}
 			
@@ -243,7 +270,7 @@ public class DrawingSurface extends PApplet {
 			count++;
 		}
 
-		// GAME OVER TEXT
+		// END SCREEN
 		if (player.getState() == 0) {
 			deathSequence();
 			resetGame();
@@ -306,6 +333,28 @@ public class DrawingSurface extends PApplet {
 		
 	}
 	
+	public void setSettings(boolean buildings, boolean nightAndDay, boolean hitboxes) {
+		drawBuildings = buildings;
+		drawNightAndDay = nightAndDay;
+		drawHitboxes = hitboxes;
+		
+	}
+	
+	public boolean getDrawBuildings() {
+		return drawBuildings;
+		
+	}
+	
+	public boolean getDrawNightAndDay() {
+		return drawNightAndDay;
+		
+	}
+	
+	public boolean getDrawHitboxes() {
+		return drawHitboxes;
+		
+	}
+	
 	private void resetGame() {
 		if(sb.getScore() > sb.getHighscore())
 			sb.setHighscore(sb.getScore());
@@ -313,13 +362,14 @@ public class DrawingSurface extends PApplet {
 		items.clear();
 		covid.clear();
 		platforms.clear();
+		background.clear();
 		count = 0;
 		weather = 0;
 		cycle = true;
-		addGameElements(items, covid, platforms);
+		addGameElements(items, covid, platforms, background);
 	}
 
-	private void addGameElements(ArrayList<Item> i, ArrayList<Covid> c, ArrayList<Platform> p) {
+	private void addGameElements(ArrayList<Item> i, ArrayList<Covid> c, ArrayList<Platform> p, ArrayList<Background> b) {
 
 		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3,
 				System.currentTimeMillis());
@@ -336,10 +386,13 @@ public class DrawingSurface extends PApplet {
 
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));
+		
+		b.add(new Background(loadImage("media/buildingBackground.png"), 0, 0, 800, 400));
+		b.add(new Background(loadImage("media/buildingBackground.png"), 800, 0, 800, 400));
 	}
 	
 	private void deathSequence() {	
-		
+		deathSound.play();
 		int num = 0;
 		while(num < 10000) {
 			textSize(24);
@@ -353,7 +406,7 @@ public class DrawingSurface extends PApplet {
 		
 	}
 
-	private void drawOutlines() {
+	private void drawHitboxes() {
 		
 		fill(255);
 		for (Item i : items) {
