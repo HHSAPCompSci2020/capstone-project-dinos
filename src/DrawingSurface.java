@@ -36,9 +36,6 @@ public class DrawingSurface extends PApplet {
 	private float weather;
 	private boolean cycle;
 	private boolean drawBuildings, drawNightAndDay, drawHitboxes;
-//	private float sunX;
-//	private float sunY;
-//	private float time;
 
 	/**
 	 * Constructor for DrawingSurface class
@@ -67,16 +64,14 @@ public class DrawingSurface extends PApplet {
 		drawBuildings = true;
 		drawNightAndDay = true;
 		drawHitboxes = false;
-//		sunX = 0;
-//		sunY = 0;
-//		time = 0;
 	}
 
 	@Override
 	public void draw() {
 		
+		// NIGHT AND DAY
 		if(drawNightAndDay) {
-			// NIGHT AND DAY
+			
 			background(52, 180f - weather, 235f - weather);
 			
 			if (cycle == true) {
@@ -122,22 +117,15 @@ public class DrawingSurface extends PApplet {
 
 		// DISPLAYING SCORE
 		textSize(24);
-		fill(0, 0, 0);
+		fill(255, 255, 0);
 		text(sb.getHighscoreDisplay(), 550, 30);
 		text(sb.getScoreDisplay(), 700, 30);
 
 
 		if (player.getState() != 0 && player.getState() != 3) {
 			
-			// SUN
-//			time += 0.3;
-//			sunX = 400f - (float) (350 * Math.cos(Math.PI * time / 130.0 + (Math.PI / 3)));
-//			sunY = 400f - (float) (325 * Math.sin(Math.PI * time / 130.0 + (Math.PI / 3)));
-//			fill(252, 223, 3);
-//			ellipse(sunX, sunY, 50f, 50f);
-			
 			// PLAYER & ITEM MOVEMENT
-			if (isPressed(KeyEvent.VK_UP)) {
+			if (isPressed(KeyEvent.VK_UP) && player.height == Player.PLAYER_HEIGHT) {
 				if (player.jump()) {
 					jumpSound.play();
 				}
@@ -258,7 +246,7 @@ public class DrawingSurface extends PApplet {
 			if (player.getState() == 2 || player.getState() == -1) {
 				textSize(24);
 				fill(0, 255, 0);
-				text("Immunity: " + player.getCountdown(), 10, 30);
+				text("Immunity: " + player.getCountdown(), 10, 570);
 			}
 
 			sb.act(count);

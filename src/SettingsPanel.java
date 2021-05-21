@@ -71,15 +71,15 @@ public class SettingsPanel extends JPanel implements ActionListener{
 		g.setColor(Color.BLACK);
 		message = "Change the settings of the game";
 		int strWidth = g.getFontMetrics().stringWidth(message);
-		g.drawString(message, 400-strWidth/2, 350);
+		g.drawString(message, 400-strWidth/2, 300);
 		
-//		g.setFont(new Font("SansSerif",Font.PLAIN,14));
-//		if(w.getDrawingSurface().getDrawBuildings()) g.drawString("Buildings: ON", 160, 50);
-//		else g.drawString("Buildings: OFF", 110, 50);
-//		if(w.getDrawingSurface().getDrawNightAndDay()) g.drawString("Night & Day: ON", 330, 50);
-//		else g.drawString("Night & Day: OFF", 320, 50);
-//		if(w.getDrawingSurface().getDrawHitboxes()) g.drawString("Hitboxes: ON", 470, 50);
-//		else g.drawString("Hitboxes: OFF", 470, 50);
+		g.setFont(new Font("SansSerif",Font.PLAIN,14));
+		if(w.getDrawingSurface().getDrawBuildings()) g.drawString("Buildings: ON", 160, 60);
+		else g.drawString("Buildings: OFF", 160, 60);
+		if(w.getDrawingSurface().getDrawNightAndDay()) g.drawString("Night & Day: ON", 330, 60);
+		else g.drawString("Night & Day: OFF", 330, 60);
+		if(w.getDrawingSurface().getDrawHitboxes()) g.drawString("Hitboxes: ON", 470, 60);
+		else g.drawString("Hitboxes: OFF", 470, 60);
 		
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/buildingBackground.png"), 110, 80, 180, 120, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dayAndNight.png"), 320, 80, 100, 100, this);
@@ -93,10 +93,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == exit) {
-			w.changePanel("1");
-			
-		} else if(e.getSource() == buildings) {
+		 if(e.getSource() == buildings) {
 			w.getDrawingSurface().setSettings(!w.getDrawingSurface().getDrawBuildings(), w.getDrawingSurface().getDrawNightAndDay(), w.getDrawingSurface().getDrawHitboxes());
 			if(w.getDrawingSurface().getDrawBuildings()) System.out.println("Buildings: ON");
 			else System.out.println("Buildings: OFF");
@@ -110,6 +107,13 @@ public class SettingsPanel extends JPanel implements ActionListener{
 			w.getDrawingSurface().setSettings(w.getDrawingSurface().getDrawBuildings(), w.getDrawingSurface().getDrawNightAndDay(), !w.getDrawingSurface().getDrawHitboxes());
 			if(w.getDrawingSurface().getDrawHitboxes()) System.out.println("Hitboxes: ON");
 			else System.out.println("Hitboxes: OFF");
+			
+		}
+		repaint();
+		
+		if(e.getSource() == exit) {
+			w.changePanel("1");
+			
 		}
 	}
 

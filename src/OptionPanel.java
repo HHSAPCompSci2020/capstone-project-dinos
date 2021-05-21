@@ -62,21 +62,21 @@ public class OptionPanel extends JPanel implements ActionListener {
 		g.setColor(Color.BLACK);
 
 		g.setFont(new Font("SansSerif",Font.BOLD,30));
-		g.drawString("Item Description", 65, 70);
-		g.drawString("Controls", 600, 100);
+		g.drawString("Legend", 60, 100);
+		g.drawString("Controls", 550, 150);
 		g.setFont(new Font("SansSerif",Font.BOLD,17));
-		g.drawString("Covid: Bad! Hit it and you will die!", 50, 160);
-		g.drawString("Mask: Take and receive 30 Points!", 52, 250);
-		g.drawString("Vaccine: Immunity for 5 seconds!", 54, 360);
+		g.drawString("Covid: Bad! Hit it and you will die!", 50, 210);
+		g.drawString("Mask: Take and receive 30 Points!", 50, 300);
+		g.drawString("Vaccine: Immunity for 5 seconds!", 50, 410);
 		g.setFont(new Font("SansSerif",Font.BOLD,25));
-		g.drawString("Jump", 700, 185);
-		g.drawString("Duck", 700, 250);
+		g.drawString("Jump", 650, 235);
+		g.drawString("Duck", 650, 300);
 		
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 335, 100, 120, 200, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/covid.png"), 100, 80, 50, 50, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/mask.png"),100, 170, 50, 50, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/vaccine.png"), 100, 270, 50, 50, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/keys.png"), 600, 100, 60, 200, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 375, 150, 120, 200, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/covid.png"), 100, 130, 50, 50, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/mask.png"),100, 220, 50, 50, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/vaccine.png"), 100, 320, 50, 50, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/keys.png"), 550, 150, 60, 200, this);
 		
 		g2.setTransform(at);
 	}
