@@ -1,3 +1,4 @@
+
 /**
  * DrawingSurface class where all of the objects are instantiated and methods are called
  * @author Clarence Choy
@@ -11,8 +12,8 @@ import processing.core.PApplet;
 public class DrawingSurface extends PApplet {
 
 	/**
-	 * DRAWING_WIDTH is the width of the drawing window 
-	 * DRAWING_HEIGHT is the height of the drawing window
+	 * DRAWING_WIDTH is the width of the drawing window DRAWING_HEIGHT is the height
+	 * of the drawing window
 	 */
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -39,6 +40,7 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Constructor for DrawingSurface class
+	 * 
 	 * @param w Main class
 	 */
 	public DrawingSurface(Main w) {
@@ -58,7 +60,7 @@ public class DrawingSurface extends PApplet {
 		test = new Item(loadImage("media/mask.png"), 0, 0, 0, 0, 0, 0);
 		playerImage = "media/doctor.png";
 		addGameElements(items, covid, platforms, background);
-		
+
 		weather = 0;
 		cycle = true;
 		drawBuildings = true;
@@ -68,12 +70,12 @@ public class DrawingSurface extends PApplet {
 
 	@Override
 	public void draw() {
-		
+
 		// NIGHT AND DAY
-		if(drawNightAndDay) {
-			
+		if (drawNightAndDay) {
+
 			background(52, 180f - weather, 235f - weather);
-			
+
 			if (cycle == true) {
 				weather += 0.1;
 			}
@@ -89,7 +91,7 @@ public class DrawingSurface extends PApplet {
 		} else {
 			background(0, 180, 255);
 		}
-		
+
 		pushMatrix();
 		int width = getWidth();
 		int height = getHeight();
@@ -100,11 +102,12 @@ public class DrawingSurface extends PApplet {
 		scale(ratioX, ratioY);
 
 		// DRAWING OBJECTS
-		if(drawBuildings) {
+		if (drawBuildings) {
 			for (Background b : background)
 				b.draw(this);
-		} 
-		if(drawHitboxes) drawHitboxes();
+		}
+		if (drawHitboxes)
+			drawHitboxes();
 		player.draw(this);
 		for (Item i : items)
 			i.draw(this);
@@ -112,8 +115,6 @@ public class DrawingSurface extends PApplet {
 			c.draw(this);
 		for (Platform p : platforms)
 			p.draw(this);
-		
-		
 
 		// DISPLAYING SCORE
 		textSize(24);
@@ -121,9 +122,8 @@ public class DrawingSurface extends PApplet {
 		text(sb.getHighscoreDisplay(), 550, 30);
 		text(sb.getScoreDisplay(), 700, 30);
 
-
 		if (player.getState() != 0 && player.getState() != 3) {
-			
+
 			// PLAYER & ITEM MOVEMENT
 			if (isPressed(KeyEvent.VK_UP) && player.height == Player.PLAYER_HEIGHT) {
 				if (player.jump()) {
@@ -234,14 +234,14 @@ public class DrawingSurface extends PApplet {
 
 				}
 			}
-			
+
 			// BACKGROUND ARRAYLIST
 			for (Background b : background) {
-				if(b.x + b.width < 0) {
+				if (b.x + b.width < 0) {
 					b.moveToLocation(800, 0);
 				}
 			}
-			
+
 			// VACCINE AND TIMER
 			if (player.getState() == 2 || player.getState() == -1) {
 				textSize(24);
@@ -258,12 +258,13 @@ public class DrawingSurface extends PApplet {
 			deathSequence();
 			resetGame();
 		}
-		
+
 		popMatrix();
 	}
-	
+
 	/**
 	 * Creates a new Player with the image of the file playerImage
+	 * 
 	 * @param playerImage file of the image you want the player to change to
 	 */
 	public void changePlayer(String playerImage) {
@@ -289,6 +290,7 @@ public class DrawingSurface extends PApplet {
 
 	/**
 	 * Checks if a certain key is pressed
+	 * 
 	 * @param code key code of the key you want to check
 	 * @return true if the key is pressed and false otherwise
 	 */
@@ -304,58 +306,68 @@ public class DrawingSurface extends PApplet {
 				System.currentTimeMillis());
 		player.setState(1);
 	}
-	
+
 	/**
 	 * Gets the Scoreboard object being used in DrawingSurface
+	 * 
 	 * @return Scoreboard object
 	 */
 	public Scoreboard getScoreboard() {
 		return sb;
-		
+
 	}
-	
+
 	/**
 	 * Change the settings of the game
-	 * @param buildings if background buildings will be drawn or not
+	 * 
+	 * @param buildings   if background buildings will be drawn or not
 	 * @param nightAndDay if the time of day will change or not
-	 * @param hitboxes if hitboxes will be drawn or not
+	 * @param hitboxes    if hitboxes will be drawn or not
 	 */
 	public void setSettings(boolean buildings, boolean nightAndDay, boolean hitboxes) {
 		drawBuildings = buildings;
 		drawNightAndDay = nightAndDay;
 		drawHitboxes = hitboxes;
-		
+
 	}
-	
+
 	/**
-	 * Gets the variable that determines if the background buildings are drawn or not
+	 * Gets the variable that determines if the background buildings are drawn or
+	 * not
+	 * 
 	 * @return true if the buildings will be drawn and false if not
 	 */
 	public boolean getDrawBuildings() {
 		return drawBuildings;
-		
+
 	}
-	
+
 	/**
-	 * Gets the variable that determines if the time of day will alter between day and night
+	 * Gets the variable that determines if the time of day will alter between day
+	 * and night
+	 * 
 	 * @return true if time of day will change and false if not
 	 */
 	public boolean getDrawNightAndDay() {
 		return drawNightAndDay;
-		
+
 	}
-	
+
 	/**
 	 * Gets the variable that determines if the hitboxes are drawn or not
+	 * 
 	 * @return true if hitboxes will be drawn and false if not
 	 */
 	public boolean getDrawHitboxes() {
 		return drawHitboxes;
-		
+
 	}
-	
+
+	/**
+	 * Resets the game, and displays highs scores
+	 */
 	private void resetGame() {
-		if(sb.getScore() > sb.getHighscore())
+		if (sb.getScore() > sb.getHighscore())
 			sb.setHighscore(sb.getScore());
 		sb.setScore(0);
 		items.clear();
@@ -368,7 +380,17 @@ public class DrawingSurface extends PApplet {
 		addGameElements(items, covid, platforms, background);
 	}
 
-	private void addGameElements(ArrayList<Item> i, ArrayList<Covid> c, ArrayList<Platform> p, ArrayList<Background> b) {
+	/**
+	 * 
+	 * Displays all game elements, and game items
+	 * 
+	 * @param i items to be displayed
+	 * @param c covid item displayed
+	 * @param p platforms displayed
+	 * @param b background for game
+	 */
+	private void addGameElements(ArrayList<Item> i, ArrayList<Covid> c, ArrayList<Platform> p,
+			ArrayList<Background> b) {
 
 		player = new Player(loadImage(playerImage), 100, 200, Player.PLAYER_WIDTH, Player.PLAYER_HEIGHT, 3,
 				System.currentTimeMillis());
@@ -385,28 +407,34 @@ public class DrawingSurface extends PApplet {
 
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 0, 400, 1000, 200));
 		p.add(new Platform(loadImage("media/dirtPlatform.png"), 990, 400, 1000, 200));
-		
+
 		b.add(new Background(loadImage("media/buildingBackground.png"), 0, 0, 800, 400));
 		b.add(new Background(loadImage("media/buildingBackground.png"), 800, 0, 800, 400));
 	}
-	
-	private void deathSequence() {	
+
+	/**
+	 * Make the player dead
+	 */
+	private void deathSequence() {
 		deathSound.play();
 		int num = 0;
-		while(num < 10000) {
+		while (num < 10000) {
 			textSize(24);
 			fill(210, 25, 55);
 			int strWidth = this.getFontMetrics(getFont()).stringWidth("GAME OVER   ");
 			text("GAME OVER   ", 400 - strWidth / 2, 200);
 			num++;
 		}
-		
+
 		main.changePanel("4");
-		
+
 	}
 
+	/**
+	 * Draw the hitboxes for the characters
+	 */
 	private void drawHitboxes() {
-		
+
 		fill(255);
 		for (Item i : items) {
 			rect((float) i.x, (float) i.y, (float) i.width, (float) i.height);
@@ -415,7 +443,7 @@ public class DrawingSurface extends PApplet {
 			rect((float) c.x, (float) c.y, (float) c.width, (float) c.height);
 		}
 		rect((float) player.x, (float) player.y, (float) player.width, (float) player.height);
-		
+
 	}
 
 }
