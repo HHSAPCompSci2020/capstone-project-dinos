@@ -1,4 +1,3 @@
-
 /**
  * DrawingSurface class where all of the objects are instantiated and methods are called
  * @author Clarence Choy

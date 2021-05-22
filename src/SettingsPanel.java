@@ -33,7 +33,7 @@ public class SettingsPanel extends JPanel implements ActionListener{
 		buildings = new JButton("Toggle Building Background");
 		buildings.addActionListener(this);
 		
-		timeOfDay = new JButton("Toggle Night & Day");
+		timeOfDay = new JButton("Toggle Changing Sky");
 		timeOfDay.addActionListener(this);
 		
 		exit = new JButton("Back to Menu");
@@ -76,8 +76,8 @@ public class SettingsPanel extends JPanel implements ActionListener{
 		g.setFont(new Font("SansSerif",Font.PLAIN,14));
 		if(w.getDrawingSurface().getDrawBuildings()) g.drawString("Buildings: ON", 160, 60);
 		else g.drawString("Buildings: OFF", 160, 60);
-		if(w.getDrawingSurface().getDrawNightAndDay()) g.drawString("Night & Day: ON", 330, 60);
-		else g.drawString("Night & Day: OFF", 330, 60);
+		if(w.getDrawingSurface().getDrawNightAndDay()) g.drawString("Changing Sky: ON", 330, 60);
+		else g.drawString("Changing Sky: OFF", 330, 60);
 		if(w.getDrawingSurface().getDrawHitboxes()) g.drawString("Hitboxes: ON", 470, 60);
 		else g.drawString("Hitboxes: OFF", 470, 60);
 		
@@ -95,18 +95,12 @@ public class SettingsPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		 if(e.getSource() == buildings) {
 			w.getDrawingSurface().setSettings(!w.getDrawingSurface().getDrawBuildings(), w.getDrawingSurface().getDrawNightAndDay(), w.getDrawingSurface().getDrawHitboxes());
-			if(w.getDrawingSurface().getDrawBuildings()) System.out.println("Buildings: ON");
-			else System.out.println("Buildings: OFF");
 			
 		} else if(e.getSource() == timeOfDay) {
 			w.getDrawingSurface().setSettings(w.getDrawingSurface().getDrawBuildings(), !w.getDrawingSurface().getDrawNightAndDay(), w.getDrawingSurface().getDrawHitboxes());
-			if(w.getDrawingSurface().getDrawNightAndDay()) System.out.println("Night & Day: ON");
-			else System.out.println("Night & Day: OFF");
 			
 		} else if(e.getSource() == hitboxes) {
 			w.getDrawingSurface().setSettings(w.getDrawingSurface().getDrawBuildings(), w.getDrawingSurface().getDrawNightAndDay(), !w.getDrawingSurface().getDrawHitboxes());
-			if(w.getDrawingSurface().getDrawHitboxes()) System.out.println("Hitboxes: ON");
-			else System.out.println("Hitboxes: OFF");
 			
 		}
 		repaint();

@@ -28,7 +28,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 	public CustomizePanel(Main w) {
 		this.w = w;
 		p = new JPanel();
-		setBackground(new Color(75, 200, 50));
+		setBackground(new Color(50, 255, 80));
 		p.setLayout(new BoxLayout(p, BoxLayout.X_AXIS));
 		
 		doctor = new JButton("Doctor");
@@ -92,19 +92,15 @@ public class CustomizePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == doctor) {
 			w.getDrawingSurface().changePlayer("media/doctor.png");
-			System.out.println("Your character is now a doctor");
 			character = "Doctor";
 		} else if(e.getSource() == dinosaur) {
 			w.getDrawingSurface().changePlayer("media/dinosaur.png");
-			System.out.println("Your character is now a dinosaur");
 			character = "Dinosaur";
 		} else if(e.getSource() == dora) {
 			w.getDrawingSurface().changePlayer("media/dora.png");
-			System.out.println("Your character is now Dora the Explorer");
 			character = "Dora the Explorer";
 		} else if(e.getSource() == pinkie) {
 			w.getDrawingSurface().changePlayer("media/pinkiePie.png");
-			System.out.println("Your character is now Dora the Explorer");
 			character = "Pinkie Pie";
 		}
 		repaint();
