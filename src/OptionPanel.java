@@ -72,6 +72,8 @@ public class OptionPanel extends JPanel implements ActionListener {
 		g.drawString("Jump", 650, 235);
 		g.drawString("Duck", 650, 300);
 		
+		
+		
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 375, 150, 120, 200, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/covid.png"), 100, 130, 50, 50, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/mask.png"),100, 220, 50, 50, this);
