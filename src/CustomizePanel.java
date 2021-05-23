@@ -15,7 +15,7 @@ public class CustomizePanel extends JPanel implements ActionListener{
 
 	private Main w;
 	private JPanel p;
-	private JButton doctor, dinosaur, dora, pinkie;
+	private JButton doctor, dinosaur, pinkie, dryBones, creeper;
 	private JButton exit;
 	
 	private String message, character;
@@ -35,10 +35,12 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		doctor.addActionListener(this);
 		dinosaur = new JButton("Dinosaur");
 		dinosaur.addActionListener(this);
-		dora = new JButton("Dora the Explorer");
-		dora.addActionListener(this);
 		pinkie = new JButton("Pinkie Pie");
 		pinkie.addActionListener(this);
+		dryBones = new JButton("Dry Bones");
+		dryBones.addActionListener(this);
+		creeper = new JButton("Creeper");
+		creeper.addActionListener(this);
 		
 		exit = new JButton("Back to Menu");
 		exit.addActionListener(this);
@@ -48,8 +50,9 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		
 		p.add(doctor);
 		p.add(dinosaur);
-		p.add(dora);
 		p.add(pinkie);
+		p.add(dryBones);
+		p.add(creeper);
 		p.add(exit);
 		add(p);
 		w.add(this);
@@ -79,10 +82,11 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		strWidth = g.getFontMetrics().stringWidth("Your character is set as " + character);
 		g.drawString("Your character is set as " + character, 400-strWidth/2, 70);
 		
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 160, 100, 60, 100, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dinosaur.png"), 240, 100, 60, 90, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dora.png"), 340, 100, 60, 100, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/pinkiePie.png"), 460, 100, 60, 100, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 140, 100, 60, 100, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dinosaur.png"), 220, 100, 60, 90, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/pinkiePie.png"), 300, 100, 60, 100, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/dryBones.png"), 400, 100, 60, 100, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/creeper.png"), 500, 100, 50, 100, this);
 		
 		g2.setTransform(at);
 		
@@ -96,12 +100,15 @@ public class CustomizePanel extends JPanel implements ActionListener{
 		} else if(e.getSource() == dinosaur) {
 			w.getDrawingSurface().changePlayer("media/dinosaur.png");
 			character = "Dinosaur";
-		} else if(e.getSource() == dora) {
-			w.getDrawingSurface().changePlayer("media/dora.png");
-			character = "Dora the Explorer";
 		} else if(e.getSource() == pinkie) {
 			w.getDrawingSurface().changePlayer("media/pinkiePie.png");
 			character = "Pinkie Pie";
+		} else if(e.getSource() == dryBones) {
+			w.getDrawingSurface().changePlayer("media/dryBones.png");
+			character = "Dry Bones";
+		} else if(e.getSource() == creeper) {
+			w.getDrawingSurface().changePlayer("media/creeper.png");
+			character = "Creeper";
 		}
 		repaint();
 		
