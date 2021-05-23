@@ -5,7 +5,7 @@ Revision: 5/22/2021
 Introduction: 
 It is the year 2021 and a deadly virus named Covid-19 has taken the world by surprise. In just a few weeks, the virus has spread all over the world and there seems to be no sign of it stopping. Infection rates have skyrocketed globally and without a vaccine in sight, it seemed hopeless. Miraculously, you and your group of doctors have announced that a vaccine for the virus has been created and is gradually being released to the public. However, not everyone is able to travel to a vaccination center (especially the elderly) so you must gather masks and vaccines so you can then deliver them to people in need.
 
-In this java-based game, the user controls a doctor that can perform two actions, jumping and ducking. Your character runs while different items such as masks, vaccines, and Covid-19 particles spawn in. The goal of the game is to survive while avoiding the Covid-19 particles and collecting masks and vaccines to gain a higher score. To add to the difficulty, the speed that the character runs increases making it harder to avoid obstacles. We decided to write this game because it is relevant to our current situation and is also a fun game for students to play. The rules of the are simple:
+In this java-based game, the user controls a doctor that can perform two actions, jumping and ducking. Your character runs while different items such as masks, vaccines, and Covid-19 particles spawn in. The goal of the game is to survive while avoiding the Covid-19 particles and collecting masks and vaccines to gain a higher score. To add to the difficulty, the speed that the character runs increases making it harder to avoid obstacles. We decided to write this game because it is relevant to our current situation and is also a fun game for students to play. The rules of the game are simple:
 
 Avoid Covid-19 particles so you don’t get infected
 Pick up masks and other items to boost your score
@@ -82,6 +82,7 @@ Clarence - DrawingSurface.java, Player.java, Item.java, OptionPanel.java, Custom
 Isaac - Mask.java, Vaccine.java, Platform.java, Covid.java, title.png
 Yukai - Scoreboard.java, EasySound.java
 
+OptionPanel inspiration, changePanel() method - Mr. Shelby
 MovingImage.java - Mr. Shelby’s Demo
 processing.jar/library - https://processing.org/ 
 
