@@ -62,24 +62,24 @@ public class OptionPanel extends JPanel implements ActionListener {
 		g.setColor(Color.BLACK);
 
 		g.setFont(new Font("SansSerif",Font.BOLD,30));
-		g.drawString("Legend", 60, 100);
-		g.drawString("Controls", 550, 150);
+		g.drawString("Legend", 60, 200);
+		g.drawString("Controls", 550, 250);
 		g.setFont(new Font("SansSerif",Font.BOLD,17));
-		g.drawString("Covid: Bad! Hit it and you will die!", 50, 210);
-		g.drawString("Mask: Take and receive 30 Points!", 50, 300);
-		g.drawString("Vaccine: Immunity for 5 seconds!", 50, 410);
+		g.drawString("Covid: Bad! Hit it and you will die!", 50, 310);
+		g.drawString("Mask: Take and receive 30 Points!", 50, 400);
+		g.drawString("Vaccine: Immunity for 5 seconds!", 50, 510);
 		g.setFont(new Font("SansSerif",Font.BOLD,25));
-		g.drawString("Jump", 650, 235);
-		g.drawString("Duck", 650, 300);
+		g.drawString("Jump", 650, 335);
+		g.drawString("Duck", 650, 400);
 		
 		
 		
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 375, 150, 120, 200, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/covid.png"), 100, 130, 50, 50, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/mask.png"),100, 220, 50, 50, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/vaccine.png"), 100, 320, 50, 50, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/keys.png"), 550, 150, 60, 200, this);
-		
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/doctor.png"), 375, 250, 120, 200, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/covid.png"), 100, 230, 50, 50, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/mask.png"),100, 320, 50, 50, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/vaccine.png"), 100, 420, 50, 50, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/keys.png"), 550, 250, 60, 200, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/Untitled-removebg-preview.png"), 150, 50, 500, 200, this);
 		g2.setTransform(at);
 	}
 	
