@@ -417,7 +417,7 @@ public class DrawingSurface extends PApplet {
 	private void deathSequence() {
 		deathSound.play();
 		int num = 0;
-		while (num < 10000) {
+		while (num < 100000) {
 			textSize(24);
 			fill(210, 25, 55);
 			int strWidth = this.getFontMetrics(getFont()).stringWidth("GAME OVER   ");
