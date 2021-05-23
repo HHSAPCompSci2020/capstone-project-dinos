@@ -79,7 +79,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/mask.png"),100, 320, 50, 50, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/vaccine.png"), 100, 420, 50, 50, this);
 		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/keys.png"), 550, 250, 60, 200, this);
-		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/Untitled-removebg-preview.png"), 150, -50, 550, 300, this);
+		g2.drawImage(Toolkit.getDefaultToolkit().getImage("media/title.png"), 150, -50, 550, 300, this);
 		g2.setTransform(at);
 	}
 	

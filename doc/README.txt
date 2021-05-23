@@ -1,6 +1,6 @@
 Covid Run (Dinosaur Run)
 Authors: Clarence Choy, Yukai Qiu, Isaac Phoon
-Revision: 5/8/2021
+Revision: 5/22/2021
 
 Introduction: 
 It is the year 2021 and a deadly virus named Covid-19 has taken the world by surprise. In just a few weeks, the virus has spread all over the world and there seems to be no sign of it stopping. Infection rates have skyrocketed globally and without a vaccine in sight, it seemed hopeless. Miraculously, you and your group of doctors have announced that a vaccine for the virus has been created and is gradually being released to the public. However, not everyone is able to travel to a vaccination center (especially the elderly) so you must gather masks and vaccines so you can then deliver them to people in need.
@@ -77,9 +77,9 @@ Platform - Represents the platform that the user can jump on, subclass of Item
 Background - Represents any background images or objects that are only there for visual effects
 
 Credits:
-Everyone - UML, README, Main.java
+Everyone - UML Diagram, README, Main.java
 Clarence - DrawingSurface.java, Player.java, Item.java, OptionPanel.java, CustomizePanel.java, EndPanel.java, SettingsPanel.java, Background.java
-Isaac - Mask.java, Vaccine.java, Platform.java, Covid.java
+Isaac - Mask.java, Vaccine.java, Platform.java, Covid.java, title.png
 Yukai - Scoreboard.java, EasySound.java
 
 MovingImage.java - Mr. Shelby’s Demo
@@ -108,6 +108,12 @@ https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pixilart.com%2Fart%2Fthe-d
 buildingBackground.png - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngkey.com%2Fmaxpic%2Fu2e6i1o0i1o0e6e6%2F&psig=AOvVaw3gYxqtj5gHVevvrTKUomyr&ust=1621625889915000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDj8r2H2fACFQAAAAAdAAAAABAD 
 
 dayAndNight.png - https://www.google.com/url?sa=i&url=https%3A%2F%2Fcreazilla.com%2Fnodes%2F36360-day-and-night-clipart&psig=AOvVaw12XU1Bh31RMS4n3Xa9DQvp&ust=1621631682818000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCesZmX2fACFQAAAAAdAAAAABAV 
+
+pinkiePie.png - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F406942516311789804%2F&psig=AOvVaw2X74D22LsRLkwNEFdEVsWJ&ust=1621833880245000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDcnZWI3_ACFQAAAAAdAAAAABAD
+
+dryBones.png - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mariowiki.com%2FDry_Bones&psig=AOvVaw0-gBs5IVbksAM5xD1w63hl&ust=1621833905403000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKj16KKI3_ACFQAAAAAdAAAAABAD 
+
+creeper.png - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngix.com%2Ftranspng%2FhoRJm%2F&psig=AOvVaw2J1laLhe3ALsv7jOKg8Gac&ust=1621834480529000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOjcwLOK3_ACFQAAAAAdAAAAABAZ 
 
 key.png - https://wwgc.firebaseapp.com/ 
 
