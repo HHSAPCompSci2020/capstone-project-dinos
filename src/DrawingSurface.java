@@ -223,6 +223,12 @@ public class DrawingSurface extends PApplet {
 							}
 						}
 					}
+					for(Item i: items) {
+						if(!c.equals(i)) {
+							while (c.isOverlapping(i))
+								c.spawnNewItem(1200, 1400);
+						}
+					}
 				}
 			}
 
