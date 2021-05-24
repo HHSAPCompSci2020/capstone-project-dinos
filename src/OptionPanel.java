@@ -1,6 +1,6 @@
 /**
  * Represents the option panel
- * @author Clarence Choy
+ * @author Yukai Qiu
  */
 import javax.swing.*;
 import java.awt.Color;
