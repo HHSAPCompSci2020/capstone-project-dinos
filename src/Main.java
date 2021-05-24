@@ -1,6 +1,6 @@
 /**
  * Class that is run to start the program
- * @author 
+ * @author Clarence Choy, Isaac Phoon, Yukai Qiu
  */
 import javax.swing.*;
 import java.awt.*;
