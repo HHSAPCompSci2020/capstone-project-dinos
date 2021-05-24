@@ -89,9 +89,9 @@ Background - Represents any background images or objects that are only there for
 
 Credits:
 Everyone - UML Diagram, README, Main.java
-Clarence - DrawingSurface.java, Player.java, Item.java, OptionPanel.java, CustomizePanel.java, EndPanel.java, SettingsPanel.java, Background.java
-Isaac - Mask.java, Vaccine.java, Platform.java, Covid.java, title.png
-Yukai - Scoreboard.java, EasySound.java
+Clarence - DrawingSurface.java, Player.java, Item.java, CustomizePanel.java, EndPanel.java, SettingsPanel.java, Background.java
+Isaac - Mask.java, Vaccine.java, Platform.java, Covid.java
+Yukai - Scoreboard.java, EasySound.java, title.png, OptionPanel.java
 
 
 OptionPanel inspiration, changePanel() method - Mr. Shelby
