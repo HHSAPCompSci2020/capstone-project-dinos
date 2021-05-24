@@ -35,6 +35,8 @@ public class Player extends MovingImage {
 	 * @param y   top left y coordinate of Player
 	 * @param w   width of Player
 	 * @param h   height of Player
+	 * @param state the status of the player
+	 * @param time time duration of the game
 	 */
 	public Player(PImage img, int x, int y, int w, int h, int state, long time) {
 		super(img, x, y, w, h);

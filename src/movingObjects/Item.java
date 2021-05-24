@@ -24,6 +24,8 @@ public class Item extends MovingImage{
 	 * @param y top left y coordinate of Item
 	 * @param w width of Item
 	 * @param h height of Item
+	 * @param speed the speed of the Item traveling
+	 * @param multiplier the multiplier of the points
 	 */
 	public Item(PImage img, int x, int y, int w, int h, double speed, double multiplier) {
 		super(img, x, y, w, h);
